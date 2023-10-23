@@ -1,6 +1,15 @@
 //All Teas
 const URL_ALL_PRODUCTS = "https://happy-earth-tea.myshopify.com/collections/all/products.json?limit=9999"
 let ALL_PRODUCTS = null;
+//Search Lists
+const NOT_TEA = ['books','accessories', 'teaware', 'gift card', 'gist_gift_card','teaware > matcha bowl > japanese tea bowl > chawan', 'coconut matcha latte iced','teaware > tea mug > tea cup','pu-erh made tea','teaware > tea mug > tea cup', 'tea cup carved bellflower 8.5 oz','teaware > tea pot','gifts > tea gifts >']
+const GREEN_TEA_TYPES = ['green tea', 'matcha', 'yellow tea', ''];
+const BLACK_TEA_TYPES = ['black tea','black tea > decaf','black tea > darjeeling first flush > organic black tea > first flush tea > loose leaf'];
+const WHITE_TEA_TYPES = ['white tea'];
+const HERBAL_TYPES = ['herbal'];
+const OOLONG_TEA_TYPES = ['oolong','coconut oolong tea','oolong > chinese oolong > rock oolong > yancha'];
+const PUERH_TEA_TYPES = ['puerh'];
+const CHAI_TEA_TYPES = ['chai'];
 //Commonly Filtered
 const GREEN_TEAS = [];  // product_type = Green Tea | Matcha | Yellow Tea
 const BLACK_TEAS = [];  // Black Tea | Black Tea > Decaf
@@ -17,23 +26,66 @@ async function getAllProducts()
     const response = await fetch(URL_ALL_PRODUCTS);
     const products = await response.json();
     //return the value
-    return products;
+    return products.products;
 }
 
 function sortProducts()
 {
-    ALL_PRODUCTS.array.forEach(element => {
-        if(!element.product_type){return;}
-        
-    });
+    console.log(ALL_PRODUCTS.length);
+    for( let i =0; i< ALL_PRODUCTS.length; i++)
+    {
+        const element = ALL_PRODUCTS[i];
+        //Check product types
+        if(!element.product_type)
+        {// use the name instead
+            element.product_type = element.title;
+        }
+        const lower_product_type = element.product_type.toLowerCase();
+
+        //Sort teas
+        if(GREEN_TEA_TYPES.some(item => lower_product_type == (item)))
+        {
+            GREEN_TEAS.push(i);
+        }
+        else if(BLACK_TEA_TYPES.some(item => lower_product_type == (item)))
+        {
+            BLACK_TEAS.push(i);
+        }
+        else if(WHITE_TEA_TYPES.some(item => lower_product_type == (item)))
+        {
+            WHITE_TEAS.push(i);
+        }
+        else if ( HERBAL_TYPES.some(item => lower_product_type == (item)))
+        {
+            HERBAL.push(i);
+        }
+        else if (OOLONG_TEA_TYPES.some(item => lower_product_type == (item)))
+        {
+            OOLONG_TEA.push(i)
+        }
+        else if (PUERH_TEA_TYPES.some(item => lower_product_type == (item)))
+        {
+            PUERH_TEA.push(i);
+        }
+        else if( CHAI_TEA_TYPES.some(item => lower_product_type == (item)) )
+        {
+            CHAI_TEA.push(i);
+        }
+    }
 }
 
 async function getRandomProduct(button)
 {
     if(ALL_PRODUCTS == null)
     {
-        ALL_PRODUCTS = await getAllProducts();
+        let result = await getAllProducts();
+        ALL_PRODUCTS = result.filter((e) => 
+            //filter
+            !(NOT_TEA.includes(e.product_type.toLowerCase()))
+        );
         sortProducts();
     }
-    
+    // Randomly select a tea
+    const randomIndex = Math.floor(Math.random()*ALL_PRODUCTS.length);
+    document.getElementById("tempFill").innerHTML = JSON.stringify(ALL_PRODUCTS[randomIndex]);
 }
