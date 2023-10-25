@@ -3,13 +3,16 @@ const URL_ALL_PRODUCTS = "https://happy-earth-tea.myshopify.com/collections/all/
 let ALL_PRODUCTS = null;
 //Search Lists
 const NOT_TEA = ['books','accessories', 'teaware', 'gift card', 'gist_gift_card','teaware > matcha bowl > japanese tea bowl > chawan', 'coconut matcha latte iced','teaware > tea mug > tea cup','pu-erh made tea','teaware > tea mug > tea cup', 'tea cup carved bellflower 8.5 oz','teaware > tea pot','gifts > tea gifts >','matcha hand sifter','matcha scoop - chashaku','Matcha Whisk Holder']
-const GREEN_TEA_TYPES = ['green tea', 'matcha', 'yellow tea', ''];
+    // Product Types
+const GREEN_TEA_TYPES = ['green tea', 'matcha', 'yellow tea'];
 const BLACK_TEA_TYPES = ['black tea','black tea > decaf','black tea > darjeeling first flush > organic black tea > first flush tea > loose leaf'];
 const WHITE_TEA_TYPES = ['white tea'];
 const HERBAL_TYPES = ['herbal'];
 const OOLONG_TEA_TYPES = ['oolong','coconut oolong tea','oolong > chinese oolong > rock oolong > yancha'];
 const PUERH_TEA_TYPES = ['puerh'];
 const CHAI_TEA_TYPES = ['chai'];
+    // Tags
+const SortByTags = {}; // Key string : Value array
 //Commonly Filtered
 const GREEN_TEAS = [];  // product_type = Green Tea | Matcha | Yellow Tea
 const BLACK_TEAS = [];  // Black Tea | Black Tea > Decaf
@@ -89,11 +92,10 @@ async function getRandomProduct(button)
             && !(NOT_TEA.includes(e.title.toLowerCase()))
         });
         ALL_PRODUCTS.forEach(item => {
-            item.body_html = filterBodyHtmlString(item.body_html).trim()
+            item.body_html = filterBodyHtmlString(item.body_html).trim();
         });
         sortProducts();
     }
-    console.log("Count",ALL_PRODUCTS.length);
     // Randomly select a tea
     const randomIndex = Math.floor(Math.random()*ALL_PRODUCTS.length);
     console.log(randomIndex);
