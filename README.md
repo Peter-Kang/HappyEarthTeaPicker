@@ -1,2 +1,1 @@
-# TeaPicker
-*.DS_Store
+
