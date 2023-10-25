@@ -102,6 +102,6 @@ async function getRandomProduct(button)
     let resultObject = ALL_PRODUCTS[randomIndex];
     const resultDisplay = JSON.stringify(resultObject.title)
     + (resultObject.body_html)
-    + "<div'><img width='25%' src="+JSON.stringify(resultObject.images[0].src)+"></img></div>";
+    + "<div'><img width='25%' src='"+JSON.stringify(resultObject.images[0].src).replace("\"",'')+"/resize=width:200'></img></div>";
     document.getElementById("tempFill").innerHTML = resultDisplay;
 }
