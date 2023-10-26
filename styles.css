@@ -1,7 +1,14 @@
+/* Font */
+header {
+  font-family: "Great Vibes", cursive;
+  color: white;
+  text-shadow: black 2px 2px;
+  font-size: 64px;
+}
 /* Grid */
 main {
   display: grid;
-  grid-template-rows: 1fr 1fr auto;
+  grid-template-rows: 6em 1fr auto;
   /*fr is good for breaking up less open space into fractions
     auto give this thing as much space as it needs
     */
