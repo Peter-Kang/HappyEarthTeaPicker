@@ -1,0 +1,33 @@
+<cat-button>
+  <style>
+    /*Center and display the cat*/
+    cat-img {
+      content: url("./SleepingWhiteCat.png");
+      width: 50%;
+      height: auto;
+      display: block;
+      text-align: center;
+      align-self: center;
+      margin: auto;
+    }
+    /*<!Look of the button*/
+    button {
+      background: none;
+      border: none;
+    }
+    /*Button interaction*/
+    button:hover cat-img,
+    button:active cat-img {
+      content: url("./SmilingCat.png");
+      cursor: pointer;
+    }
+    /*Center the title*/
+    p {
+      text-align: center;
+    }
+  </style>
+  <p>Click on the cat to pick a Tea</p>
+  <button onclick="getRandomProduct()" title="Click to Pick a Tea">
+    <cat-img></cat-img>
+  </button>
+</cat-button>

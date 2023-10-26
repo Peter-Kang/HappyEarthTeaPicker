@@ -1,0 +1,52 @@
+/* Grid */
+main {
+  display: grid;
+  grid-template-rows: 1fr 1fr auto;
+  /*fr is good for breaking up less open space into fractions
+    auto give this thing as much space as it needs
+    */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "sortOptions"
+    "teaResult";
+  gap: 1em;
+}
+/* Sections */
+header {
+  grid-area: title;
+}
+section[sortOptions] {
+  grid-area: sortOptions;
+  align-self: center;
+  margin: auto;
+}
+section[teaResult] {
+  grid-area: teaResult;
+  text-align: left;
+  margin: auto;
+}
+
+/*Align Center*/
+/* center align content */
+h1,
+p,
+main {
+  margin: auto;
+}
+main {
+  text-align: center;
+}
+p {
+  text-align: left;
+}
+
+/*Background*/
+body {
+  background: rgb(145, 209, 139);
+  background: radial-gradient(
+    circle,
+    rgba(145, 209, 139, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}

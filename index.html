@@ -1,25 +1,35 @@
 <html>
-    <head>
+  <head>
     <!-- Tram-Lite-->
-        <script type="text/javascript" src="https://unpkg.com/tram-lite@4.2.0"></script>
+    <script
+      src="https://unpkg.com/tram-lite@4.2.0/output/import-components.js"
+      tl-components="./CatButton/cat.html"
+    ></script>
+    <script src="https://unpkg.com/tram-lite@4.2.0"></script>
     <!-- Local JS -->
-        <script src="./API/AllProducts.js"></script>
+    <script src="./API/AllProducts.js"></script>
+    <script src="./CatButton/CatButton.js"></script>
+
     <!-- Meta Tags and Favicon stuff-->
-        <title>Tea Picker</title>
+    <title>Tea Picker</title>
     <!--CSS-->
-        <link rel="stylesheet" type="text/css" href="./styles.css" />
-    </head>
-    <body>
-        <main>
-            <header>
-                <h1> Tea Picker </h1>
-            </header>
-            <section catPicker>
-                <button onclick="getRandomProduct(this)"> Randomizer </button>
-            </section>
-            <section teaResult>
-                <p id="tempFill"></p>
-            </section>
-        </main>
-    </body>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Tea Picker</h1>
+      </header>
+      <section sortOptions></section>
+      <section teaResults>
+        <cat-button></cat-button>
+        <p id="tempFill"></p>
+      </section>
+    </main>
+    <!-- Initialize the Data coming in from AllProducts.js -->
+    <script tl-effect>
+      initialize();
+    </script>
+    <!--/ Initialize the Data coming in from AllProducts.js -->
+  </body>
 </html>
