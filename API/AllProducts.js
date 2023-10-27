@@ -21,7 +21,8 @@ const NOT_TEA = [
   "matcha scoop - chashaku",
   "matcha whisk holder",
   "matcha whisk",
-  "15-Piece Tin Tea Set - Assorted Styles Available",
+  "15-piece tin tea set - assorted styles available",
+  "winter spice tin",
 ];
 // Product Types
 const GREEN_TEA_TYPES = ["green tea", "matcha", "yellow tea"];
@@ -60,53 +61,51 @@ async function getAllProducts() {
 }
 
 //ToDo Combine with main filter
-function sortProducts() {
-  for (let i = 0; i < ALL_PRODUCTS.length; i++) {
-    const element = ALL_PRODUCTS[i];
+function sortProducts(rawResults) {
+  ALL_PRODUCTS = [];
+  for (let i = 0; i < rawResults.length; i++) {
+    const item = rawResults[i];
     //Check product types
-    if (!element.product_type) {
+    if (!item.product_type) {
       // use the name instead
-      element.product_type = element.title;
+      item.product_type = item.title;
     }
-    const lower_product_type = element.product_type.toLowerCase();
-    //Sort teas
-    if (GREEN_TEA_TYPES.some((item) => lower_product_type === item)) {
-      GREEN_TEAS.push(i);
-    } else if (BLACK_TEA_TYPES.some((item) => lower_product_type === item)) {
-      BLACK_TEAS.push(i);
-    } else if (WHITE_TEA_TYPES.some((item) => lower_product_type == item)) {
-      WHITE_TEAS.push(i);
-    } else if (HERBAL_TYPES.some((item) => lower_product_type === item)) {
-      HERBAL.push(i);
-    } else if (OOLONG_TEA_TYPES.some((item) => lower_product_type === item)) {
-      OOLONG_TEA.push(i);
-    } else if (PUERH_TEA_TYPES.some((item) => lower_product_type === item)) {
-      PUERH_TEA.push(i);
-    } else if (CHAI_TEA_TYPES.some((item) => lower_product_type === item)) {
-      CHAI_TEA.push(i);
-    }
-  }
-}
 
-function filterBodyHtmlString(bodyHtml) {
-  return bodyHtml
-    .replace(/(<img.*">)+/g, "")
-    .replace(/(<iframe.*iframe>)+/g, "");
+    const lower_product_type = item.product_type.toLowerCase();
+    if (
+      ((lower_product_type === "matcha" || lower_product_type === "chai") &&
+        NOT_TEA.includes(lower_product_type)) ||
+      NOT_TEA.includes(item.title.toLowerCase())
+    ) {
+      continue; // trim results
+    }
+
+    const index_ALL_PRODUCTS = ALL_PRODUCTS.length;
+    //Sort teas
+    if (GREEN_TEA_TYPES.some((name) => lower_product_type === name)) {
+      GREEN_TEAS.push(index_ALL_PRODUCTS);
+    } else if (BLACK_TEA_TYPES.some((name) => lower_product_type === name)) {
+      BLACK_TEAS.push(index_ALL_PRODUCTS);
+    } else if (WHITE_TEA_TYPES.some((name) => lower_product_type === name)) {
+      WHITE_TEAS.push(index_ALL_PRODUCTS);
+    } else if (HERBAL_TYPES.some((name) => lower_product_type === name)) {
+      HERBAL.push(index_ALL_PRODUCTS);
+    } else if (OOLONG_TEA_TYPES.some((name) => lower_product_type === name)) {
+      OOLONG_TEA.push(index_ALL_PRODUCTS);
+    } else if (PUERH_TEA_TYPES.some((name) => lower_product_type === name)) {
+      PUERH_TEA.push(index_ALL_PRODUCTS);
+    } else if (CHAI_TEA_TYPES.some((name) => lower_product_type === name)) {
+      CHAI_TEA.push(index_ALL_PRODUCTS);
+    } else {
+      continue; //meaning don't add
+    }
+    ALL_PRODUCTS.push(item);
+  }
 }
 
 async function initialize() {
   if (ALL_PRODUCTS == null) {
     let result = await getAllProducts();
-    ALL_PRODUCTS = result.filter((e) => {
-      //filter
-      return (
-        !NOT_TEA.includes(e.product_type.toLowerCase()) &&
-        !NOT_TEA.includes(e.title.toLowerCase())
-      );
-    });
-    ALL_PRODUCTS.forEach((item) => {
-      item.body_html = filterBodyHtmlString(item.body_html).trim();
-    });
-    sortProducts();
+    sortProducts(result);
   }
 }
