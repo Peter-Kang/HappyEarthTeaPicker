@@ -21,7 +21,7 @@ const NOT_TEA = [
   "matcha scoop - chashaku",
   "matcha whisk holder",
   "matcha whisk",
-  "15-Piece Tin Tea Set - Assorted Styles Available"
+  "15-Piece Tin Tea Set - Assorted Styles Available",
 ];
 // Product Types
 const GREEN_TEA_TYPES = ["green tea", "matcha", "yellow tea"];
@@ -59,6 +59,7 @@ async function getAllProducts() {
   return products.products;
 }
 
+//ToDo Combine with main filter
 function sortProducts() {
   for (let i = 0; i < ALL_PRODUCTS.length; i++) {
     const element = ALL_PRODUCTS[i];
