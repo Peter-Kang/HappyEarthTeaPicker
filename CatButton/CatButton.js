@@ -24,4 +24,8 @@ function getRandomProduct(button) {
   //Set the description
   button.getRootNode().host.shadowRoot.getElementById("TeaText").innerHTML =
     filterBodyHtmlString(resultObject.body_html).trim();
+
+  //make visable
+  button.getRootNode().host.shadowRoot.getElementById("card").style.visibility =
+    "visible";
 }
