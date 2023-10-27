@@ -8,7 +8,7 @@ header {
 /* Grid */
 main {
   display: grid;
-  grid-template-rows: 6em 1fr auto;
+  grid-template-rows: auto 1fr auto;
   /*fr is good for breaking up less open space into fractions
     auto give this thing as much space as it needs
     */
