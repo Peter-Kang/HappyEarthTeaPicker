@@ -19,7 +19,9 @@ const NOT_TEA = [
   "gifts > tea gifts >",
   "matcha hand sifter",
   "matcha scoop - chashaku",
-  "Matcha Whisk Holder",
+  "matcha whisk holder",
+  "matcha whisk",
+  "15-Piece Tin Tea Set - Assorted Styles Available"
 ];
 // Product Types
 const GREEN_TEA_TYPES = ["green tea", "matcha", "yellow tea"];
