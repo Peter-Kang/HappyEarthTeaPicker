@@ -23,6 +23,7 @@ const NOT_TEA = [
   "matcha whisk",
   "15-piece tin tea set - assorted styles available",
   "winter spice tin",
+  "roch-cha chai tin",
 ];
 // Product Types
 const GREEN_TEA_TYPES = ["green tea", "matcha", "yellow tea"];
