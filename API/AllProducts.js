@@ -101,6 +101,14 @@ function sortProducts(rawResults) {
       continue; //meaning don't add
     }
     ALL_PRODUCTS.push(item);
+    //tags
+    item.tags.forEach((tag) => {
+      if (tag in SortByTags) {
+        SortByTags[tag].push(index_ALL_PRODUCTS);
+      } else {
+        SortByTags[tag] = [index_ALL_PRODUCTS];
+      }
+    });
   }
 }
 
