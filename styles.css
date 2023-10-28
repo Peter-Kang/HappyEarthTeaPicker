@@ -57,3 +57,9 @@ body {
     rgba(79, 121, 75, 1) 100%
   );
 }
+/*Mobile header font size*/
+@media screen and (max-width: 750px) {
+  header {
+    font-size: 30px;
+  }
+}
