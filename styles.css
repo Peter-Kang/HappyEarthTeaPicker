@@ -61,6 +61,6 @@ body {
 @media screen and (max-width: 750px) {
   header {
     font-size: 30px;
-    text-shadow: black 1px 1px;
+    text-shadow: none;
   }
 }
