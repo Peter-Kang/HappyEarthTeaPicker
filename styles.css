@@ -14,14 +14,15 @@ main {
     */
   grid-template-columns: 1fr;
   grid-template-areas:
-    "title"
     "sortOptions"
     "teaResult";
   gap: 1em;
 }
 /* Sections */
 header {
-  grid-area: title;
+  align-self: center;
+  text-align: center;
+  margin: auto;
 }
 section[sortOptions] {
   grid-area: sortOptions;
@@ -38,6 +39,7 @@ section[teaResult] {
 /* center align content */
 h1,
 p,
+header,
 main {
   margin: auto;
 }
