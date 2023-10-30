@@ -5,6 +5,12 @@ header {
   text-shadow: black 2px 2px;
   font-size: 64px;
 }
+section[description] {
+  font-family: "Great Vibes", cursive;
+  color: white;
+  text-shadow: black 1px 1px;
+  font-size: 32px;
+}
 /* Grid */
 main {
   display: grid;
@@ -14,18 +20,18 @@ main {
     */
   grid-template-columns: 1fr;
   grid-template-areas:
-    "sortOptions"
+    "description"
     "teaResult";
   gap: 1em;
 }
-/* Sections */
+/* Sections centering */
 header {
   align-self: center;
   text-align: center;
   margin: auto;
 }
-section[sortOptions] {
-  grid-area: sortOptions;
+section[description] {
+  grid-area: description;
   align-self: center;
   margin: auto;
 }
@@ -63,6 +69,10 @@ body {
 @media screen and (max-width: 750px) {
   header {
     font-size: 30px;
+    text-shadow: none;
+  }
+  section[description]
+  {
     text-shadow: none;
   }
 }

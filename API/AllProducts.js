@@ -65,13 +65,13 @@ async function getAllProducts() {
 function sortProducts(rawResults) {
   ALL_PRODUCTS = [];
   for (let i = 0; i < rawResults.length; i++) {
-    const item = rawResults[i];
+    const item = rawResults[i];ß
     //Check product types
     if (!item.product_type) {
       // use the name instead
       item.product_type = item.title;
     }
-
+    //Sort product types
     const lower_product_type = item.product_type.toLowerCase();
     if (
       ((lower_product_type === "matcha" || lower_product_type === "chai") &&
@@ -114,7 +114,7 @@ function sortProducts(rawResults) {
 
 async function initialize() {
   if (ALL_PRODUCTS == null) {
-    let result = await getAllProducts();
+    const result = await getAllProducts();
     sortProducts(result);
   }
 }
