@@ -65,7 +65,7 @@ async function getAllProducts() {
 function sortProducts(rawResults) {
   ALL_PRODUCTS = [];
   for (let i = 0; i < rawResults.length; i++) {
-    const item = rawResults[i];ß
+    const item = rawResults[i];
     //Check product types
     if (!item.product_type) {
       // use the name instead
