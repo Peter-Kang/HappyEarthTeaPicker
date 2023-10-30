@@ -51,6 +51,8 @@ const HERBAL = []; //Herbal
 const OOLONG_TEA = []; //Oolong | Oolong Tea | Oolong > Chinese Oolong > Rock Oolong > Yancha
 const PUERH_TEA = []; //Puerh
 const CHAI_TEA = []; //Chai
+//surmise
+const TEA_CATEGORIES = {};
 
 //Functions
 async function getAllProducts() {
@@ -81,8 +83,8 @@ function sortProducts(rawResults) {
       continue; // trim results
     }
 
-    const index_ALL_PRODUCTS = ALL_PRODUCTS.length;
     //Sort teas
+    const index_ALL_PRODUCTS = ALL_PRODUCTS.length;
     if (GREEN_TEA_TYPES.some((name) => lower_product_type === name)) {
       GREEN_TEAS.push(index_ALL_PRODUCTS);
     } else if (BLACK_TEA_TYPES.some((name) => lower_product_type === name)) {
@@ -110,6 +112,14 @@ function sortProducts(rawResults) {
       }
     });
   }
+  //populate the tea categories separate from the tags
+  TEA_CATEGORIES["GREEN_TEAS"]  = GREEN_TEAS;
+  TEA_CATEGORIES["BLACK_TEAS"]  = BLACK_TEAS;
+  TEA_CATEGORIES["WHITE_TEAS"]  = WHITE_TEAS;
+  TEA_CATEGORIES["HERBAL"]      = HERBAL;
+  TEA_CATEGORIES["OOLONG"]      = OOLONG_TEA;
+  TEA_CATEGORIES["PUERH_TEA"]   = PUERH_TEA;
+  TEA_CATEGORIES["CHAI_TEA"]    = CHAI_TEA;
 }
 
 async function initialize() {

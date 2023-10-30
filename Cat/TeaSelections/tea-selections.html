@@ -1,12 +1,25 @@
 <tea-selections>
-    <style></style>
-
-    <script tl-effect>
-         console.log("hi");
+    <style>
+        label{
+            color: white;
+        }
+    </style>
+    <script tl-effect src="./tea-selections.js">
+        /*
+        const category_to_use = this.getRootNode().host.getAttribute("category");
+        this.shadowRoot.getElementById("TeaNames").InnerHtml = GetInnerHtmlOfCategories(category_to_use);
+        */
+    </script>
+    <script tl-effect src="./tea-selections.js">
 TramLite.addAttributeListener(
       this.getRootNode().host,
       ["category"],
       () => {
+        const category_to_use = this.getRootNode().host.getAttribute("category");
+        this.shadowRoot.getElementById("TeaNames").InnerHtml = GetInnerHtmlOfCategories(category_to_use);
       })
     </script>
+    <!-- label>Current Lists:</label-->
+    <p id="TeaNames">
+    </p>
 </tea-selections>
