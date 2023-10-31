@@ -42,7 +42,7 @@ const OOLONG_TEA_TYPES = [
 const PUERH_TEA_TYPES = ["puerh"];
 const CHAI_TEA_TYPES = ["chai"];
 // Tags
-const SortByTags = {}; // Key string : Value array
+const TEA_TAGS = {}; // Key string : Value array
 //Commonly Filtered
 const GREEN_TEAS = []; // product_type = Green Tea | Matcha | Yellow Tea
 const BLACK_TEAS = []; // Black Tea | Black Tea > Decaf
@@ -105,10 +105,10 @@ function sortProducts(rawResults) {
     ALL_PRODUCTS.push(item);
     //tags
     item.tags.forEach((tag) => {
-      if (tag in SortByTags) {
-        SortByTags[tag].push(index_ALL_PRODUCTS);
+      if (tag in TEA_TAGS) {
+        TEA_TAGS[tag].push(index_ALL_PRODUCTS);
       } else {
-        SortByTags[tag] = [index_ALL_PRODUCTS];
+        TEA_TAGS[tag] = [index_ALL_PRODUCTS];
       }
     });
   }

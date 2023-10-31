@@ -14,9 +14,9 @@ function GetInnerHtmlOfCategories(categoryName)
             results.push(`${ALL_PRODUCTS[index].title}`);
         });
     }
-    else if (categoryName in SortByTags)
+    else if (categoryName in TEA_TAGS)
     {
-        SortByTags[categoryName].forEach(index => 
+        TEA_TAGS[categoryName].forEach(index => 
             {
                 results.push(`${ALL_PRODUCTS[index].title}`);
             });
