@@ -82,7 +82,7 @@ function sortProducts(rawResults) {
       (item.tags?.includes("gifts"))
       )
       ) {
-      continue; // trim results
+      continue; // trim results, meaning don't add
     }
 
     //Sort teas
@@ -115,6 +115,7 @@ function sortProducts(rawResults) {
     });
   }
   //populate the tea categories separate from the tags
+  // Keeping the orginal variables To make it easy to display if going into browser console.
   TEA_CATEGORIES["GREEN_TEAS"]  = GREEN_TEAS;
   TEA_CATEGORIES["BLACK_TEAS"]  = BLACK_TEAS;
   TEA_CATEGORIES["WHITE_TEAS"]  = WHITE_TEAS;
