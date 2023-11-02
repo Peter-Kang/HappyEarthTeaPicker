@@ -42,7 +42,7 @@ const OOLONG_TEA_TYPES = [
 const PUERH_TEA_TYPES = ["puerh"];
 const CHAI_TEA_TYPES = ["chai"];
 // Tags
-const SortByTags = {}; // Key string : Value array
+const TEA_TAGS = {}; // Key string : Value array
 //Commonly Filtered
 const GREEN_TEAS = []; // product_type = Green Tea | Matcha | Yellow Tea
 const BLACK_TEAS = []; // Black Tea | Black Tea > Decaf
@@ -76,11 +76,13 @@ function sortProducts(rawResults) {
     //Sort product types
     const lower_product_type = item.product_type.toLowerCase();
     if (
-      ((lower_product_type === "matcha" || lower_product_type === "chai") &&
-        NOT_TEA.includes(lower_product_type)) ||
-      NOT_TEA.includes(item.title.toLowerCase())
-    ) {
-      continue; // trim results
+      (lower_product_type === "matcha" || lower_product_type === "chai") &&
+        (NOT_TEA.includes(lower_product_type) ||
+      NOT_TEA.includes(item.title.toLowerCase()) ||
+      (item.tags?.includes("gifts"))
+      )
+      ) {
+      continue; // trim results, meaning don't add
     }
 
     //Sort teas
@@ -105,14 +107,15 @@ function sortProducts(rawResults) {
     ALL_PRODUCTS.push(item);
     //tags
     item.tags.forEach((tag) => {
-      if (tag in SortByTags) {
-        SortByTags[tag].push(index_ALL_PRODUCTS);
+      if (tag in TEA_TAGS) {
+        TEA_TAGS[tag].push(index_ALL_PRODUCTS);
       } else {
-        SortByTags[tag] = [index_ALL_PRODUCTS];
+        TEA_TAGS[tag] = [index_ALL_PRODUCTS];
       }
     });
   }
   //populate the tea categories separate from the tags
+  // Keeping the orginal variables To make it easy to display if going into browser console.
   TEA_CATEGORIES["GREEN_TEAS"]  = GREEN_TEAS;
   TEA_CATEGORIES["BLACK_TEAS"]  = BLACK_TEAS;
   TEA_CATEGORIES["WHITE_TEAS"]  = WHITE_TEAS;
