@@ -76,10 +76,12 @@ function sortProducts(rawResults) {
     //Sort product types
     const lower_product_type = item.product_type.toLowerCase();
     if (
-      ((lower_product_type === "matcha" || lower_product_type === "chai") &&
-        NOT_TEA.includes(lower_product_type)) ||
-      NOT_TEA.includes(item.title.toLowerCase())
-    ) {
+      (lower_product_type === "matcha" || lower_product_type === "chai") &&
+        (NOT_TEA.includes(lower_product_type) ||
+      NOT_TEA.includes(item.title.toLowerCase()) ||
+      (item.tags?.includes("gifts"))
+      )
+      ) {
       continue; // trim results
     }
 
