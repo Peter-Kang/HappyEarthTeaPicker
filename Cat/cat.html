@@ -1,4 +1,4 @@
-<cat-button category="ALL">
+<cat-button>
   <style>
     /*Center and display the cat*/
     cat-img {
@@ -32,7 +32,6 @@
       text-shadow: black 1px 1px 2px;
     }
     .card {
-      visibility: hidden;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
       border-radius: 15px;
@@ -41,6 +40,10 @@
       text-align: center;
       margin: auto;
       padding: 15px;
+    }
+    section[teaList]
+    {
+      color:white;
     }
     /* Mobile */
     @media screen and (max-width: 750px) {
@@ -59,14 +62,19 @@
   </style>
 
   <p>Click on the cat to pick a Tea</p>
-  <button onclick="getRandomProduct(this)" title="Click to Pick a Tea">
+  <button disabled onclick="getRandomProduct(this)" title="Click to Pick a Tea">
     <cat-img></cat-img>
   </button>
   <div id="card" class="card">
+    <tea-categories></tea-categories>
     <h3 id="TeaTitle"></h3>
     <section teaDescription>
       <div id="Img"></div>
       <div id="TeaText"></div>
+    </section>
+    <section teaList>
+      <p id="teaNames">
+      </p>
     </section>
   </div>
 </cat-button>

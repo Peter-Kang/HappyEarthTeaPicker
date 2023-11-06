@@ -1,7 +1,9 @@
 //All Teas
 const URL_ALL_PRODUCTS =
   "https://happy-earth-tea.myshopify.com/collections/all/products.json?limit=9999";
+
 let ALL_PRODUCTS = null;
+let CURRENT_PRODUCT = ALL_PRODUCTS;
 //Search Lists
 const NOT_TEA = [
   "books",
@@ -77,11 +79,10 @@ function sortProducts(rawResults) {
     const lower_product_type = item.product_type.toLowerCase();
     if (
       (lower_product_type === "matcha" || lower_product_type === "chai") &&
-        (NOT_TEA.includes(lower_product_type) ||
-      NOT_TEA.includes(item.title.toLowerCase()) ||
-      (item.tags?.includes("gifts"))
-      )
-      ) {
+      (NOT_TEA.includes(lower_product_type) ||
+        NOT_TEA.includes(item.title.toLowerCase()) ||
+        item.tags?.includes("gifts"))
+    ) {
       continue; // trim results, meaning don't add
     }
 
@@ -115,19 +116,23 @@ function sortProducts(rawResults) {
     });
   }
   //populate the tea categories separate from the tags
-  // Keeping the orginal variables To make it easy to display if going into browser console.
-  TEA_CATEGORIES["GREEN_TEAS"]  = GREEN_TEAS;
-  TEA_CATEGORIES["BLACK_TEAS"]  = BLACK_TEAS;
-  TEA_CATEGORIES["WHITE_TEAS"]  = WHITE_TEAS;
-  TEA_CATEGORIES["HERBAL"]      = HERBAL;
-  TEA_CATEGORIES["OOLONG"]      = OOLONG_TEA;
-  TEA_CATEGORIES["PUERH_TEA"]   = PUERH_TEA;
-  TEA_CATEGORIES["CHAI_TEA"]    = CHAI_TEA;
+  // Keeping the original variables To make it easy to display if going into browser console.
+  TEA_CATEGORIES["GREEN_TEAS"] = GREEN_TEAS;
+  TEA_CATEGORIES["BLACK_TEAS"] = BLACK_TEAS;
+  TEA_CATEGORIES["WHITE_TEAS"] = WHITE_TEAS;
+  TEA_CATEGORIES["HERBAL"] = HERBAL;
+  TEA_CATEGORIES["OOLONG"] = OOLONG_TEA;
+  TEA_CATEGORIES["PUERH_TEA"] = PUERH_TEA;
+  TEA_CATEGORIES["CHAI_TEA"] = CHAI_TEA;
 }
 
-async function initialize() {
+async function initialize(cat) {
   if (ALL_PRODUCTS == null) {
     const result = await getAllProducts();
     sortProducts(result);
+    //Enable button
+    cat.shadowRoot.querySelector("button").removeAttribute("disabled");
+    //populate the text area
+    
   }
 }

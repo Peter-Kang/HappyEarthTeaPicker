@@ -1,0 +1,69 @@
+<tea-categories display="">
+  <style>
+    /* Box type */
+    div{
+      flex-flow: row wrap;
+    }
+    /* Fonts */
+    label {
+      color: black;
+      text-align: center;
+      position: relative;
+    }
+    /* Spacing */
+    label {
+      height: auto;
+      background: #4f794b;
+      border-radius: 20px;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+      position: relative;
+    }
+    /*Label on hover*/
+    label:hover
+    {
+      color: yellowgreen;
+    }
+    /* Mouse interaction with radio buttons and turn off radio button display */
+    input[type="radio"] {
+      display: none;
+      &:not(:disabled) ~ label {
+        cursor: pointer;
+      }
+    }
+    /*Radio Button clicked
+    */
+    input[type="radio"]:checked + label {
+      color: hsla(150, 5%, 75%, 1);
+    }
+  }
+  </style>
+  <div>
+    <input type="radio" id="All" name="categories" value="0" checked> 
+      <label for="All">All</label> 
+    </input>
+    <input type="radio" id="White" name="categories" value="1"> 
+      <label for="White">White</label> 
+    </input>
+    <input type="radio" id="Green" name="categories" value="2"> 
+      <label for="Green">Green</label> 
+    </input>
+    <input type="radio" id="Oolong" name="categories" value="3"> 
+      <label for="Oolong">Oolong</label> 
+    </input>
+    <input type="radio" id="Black" name="categories" value="4"> 
+      <label for="Black">Black</label> 
+    </input>
+    <input type="radio" id="Herbal" name="categories" value="5"> 
+      <label for="Herbal">Herbal</label> 
+    </input>
+    <input type="radio" id="Chai" name="categories" value="6"> 
+      <label for="Chai">Chai</label> 
+    </input>
+  </div>
+  <script>
+    
+  </script>
+</tea-categories>
