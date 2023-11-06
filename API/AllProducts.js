@@ -54,6 +54,17 @@ const OOLONG_TEA = []; //Oolong | Oolong Tea | Oolong > Chinese Oolong > Rock Oo
 const PUERH_TEA = []; //Puerh
 const CHAI_TEA = []; //Chai
 //surmise
+const TEA_ENUMS = 
+{
+  0:"ALL",
+  1:"WHITE_TEA",
+  2:"GREEN_TEAS",
+  3:"OOLONG_TEAS",
+  4:"BLACK_TEAS",
+  5:"HERBAL",
+  6:"PUERH_TEA",
+  7:"CHAI_TEA"
+};
 const TEA_CATEGORIES = {};
 
 //Functions
@@ -126,6 +137,12 @@ function sortProducts(rawResults) {
   TEA_CATEGORIES["CHAI_TEA"] = CHAI_TEA;
 }
 
+function initializeList(teaNames)
+{
+  ALL_PRODUCTS.forEach(item => 
+    teaNames.innerHTML += `<p style="display:block">${item.title}</p>`);
+}
+
 async function initialize(cat) {
   if (ALL_PRODUCTS == null) {
     const result = await getAllProducts();
@@ -133,6 +150,6 @@ async function initialize(cat) {
     //Enable button
     cat.shadowRoot.querySelector("button").removeAttribute("disabled");
     //populate the text area
-    
+    initializeList( cat.shadowRoot.getElementById("teaNames") );
   }
 }
