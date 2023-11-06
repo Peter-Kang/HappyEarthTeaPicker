@@ -2,7 +2,10 @@
   <style>
     /* Box type */
     div{
+      display: flex;
       flex-flow: row wrap;
+      padding: 1em;/*Add space between the card and the categories*/
+      justify-content: center;
     }
     /* Fonts */
     label {
@@ -10,16 +13,16 @@
       text-align: center;
       position: relative;
     }
-    /* Spacing */
+    /* Spacing and pill borders*/
     label {
       height: auto;
       background: #4f794b;
       border-radius: 20px;
       padding: 0.5rem;
-      margin-bottom: 0.5rem;
       text-align: center;
       box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
       position: relative;
+      margin: 5px;
     }
     /*Label on hover*/
     label:hover
