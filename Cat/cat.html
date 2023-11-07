@@ -46,6 +46,11 @@
     {
       color:black;
     }
+    /*Hide the teanames on start*/
+    #teaNames
+    {
+      display: none;
+    }
     /* Mobile */
     @media screen and (max-width: 750px) {
       .card {
@@ -75,8 +80,8 @@
     <section teaList>
       <hr/>
       <!-- Make this section collapsible-->
-      <h3>Tea Pool</h3>
-      <div id="teaNames">
+      <button onclick="ToggleTeaNames(this)"><h3>Tea Pool</h3></button>
+      <div id="teaNames" style="display:none;">
       </div>
     </section>
   </div>

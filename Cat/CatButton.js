@@ -25,7 +25,7 @@ function setTeaToDisplay(button, teaPicked) {
 //Randomly pick a product
 function getRandomProduct(button) {
   // Randomly select a tea
-  const teaPicked = RandomlySelectTeaFromArray(ALL_PRODUCTS);
+  const teaPicked = RandomlySelectTeaFromArray(CURRENT_PRODUCT);
   // Set tea displayed
   setTeaToDisplay(button, teaPicked);
 }
