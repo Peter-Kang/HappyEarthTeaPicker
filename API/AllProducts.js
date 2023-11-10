@@ -3,7 +3,7 @@ const URL_ALL_PRODUCTS =
   "https://happy-earth-tea.myshopify.com/collections/all/products.json?limit=9999";
 
 let ALL_PRODUCTS = null;
-let CURRENT_PRODUCT = ALL_PRODUCTS;
+let CURRENT_PRODUCT = null;
 //Search Lists
 const NOT_TEA = [
   "books",
@@ -155,9 +155,11 @@ async function initialize(cat) {
   if (ALL_PRODUCTS == null) {
     const result = await getAllProducts();
     sortProducts(result);
+    CURRENT_PRODUCT = ALL_PRODUCTS;
     //Enable button
     cat.shadowRoot.querySelector("button").removeAttribute("disabled");
     //populate the text area
     initializeList(cat.shadowRoot.getElementById("teaNames"));
+   
   }
 }
