@@ -3,14 +3,14 @@
     <!-- Tram-Lite-->
     <script
       src="https://unpkg.com/tram-lite@5/output/import-components.js"
-      tl-components="./Cat/cat.html ./Cat/categories/tea-categories.html"
+      tl-components="./Cat/cat.html ./Categories/tea-categories.html ./TeaResult/tea-result.html"
     ></script>
     <script src="https://unpkg.com/tram-lite@5"></script>
     <!-- Local JS -->
     <script src="./API/AllProducts.js"></script>
     <script src="./Util/Randomizer.js"></script>
     <script src="./Cat/CatButton.js"></script>
-    <script src="./Cat/categories/tea-categories.js"></script>
+    <script src="./Categories/tea-categories.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./styles.css" />
@@ -77,10 +77,19 @@
     </header>
     <main>
       <section description>
-        <p>Great source of Serendipitea</p>
+        <p>Wasn't even Looking when I found you</p>
       </section>
-      <section teaResults>
+      <section teaCat>
         <cat-button id="Cat"></cat-button>
+      </section>
+      <section expandArea class="card">
+          <section filters>
+            <tea-categories></tea-categories>
+          </section>
+          <section teaResults>
+            <tea-result></tea-result>
+          </section>
+        </div>
       </section>
     </main>
     <!-- Initialize the Data coming in from AllProducts.js -->

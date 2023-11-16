@@ -1,0 +1,39 @@
+<tea-result>
+  <style>
+    /*Tea title font*/
+    h3 {
+      color: white;
+      text-shadow: black 1px 1px 2px;
+    }
+    section[teaList] {
+      color: black;
+    }
+    /*Hide the teanames on start*/
+    #teaNames {
+      display: none;
+    }
+    /*Center the title and tea title*/
+    p,
+    h3,
+    label {
+      text-align: center;
+    }
+    /*Look of the button*/
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <h3 id="TeaTitle"></h3>
+  <section teaDescription>
+    <div id="Img"></div>
+    <div id="TeaText"></div>
+  </section>
+  <section teaList>
+    <hr />
+    <button onclick="ToggleTeaNames(this)"><h3>Tea Pool</h3></button>
+    <div id="teaNames" style="display: none"></div>
+  </section>
+</tea-result>
