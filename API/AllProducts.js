@@ -143,7 +143,15 @@ function sortProducts(rawResults) {
   TEA_CATEGORIES["CHAI_TEA"] = CHAI_TEA;
   TEA_CATEGORIES["YELLOW_TEA"] = YELLOW_TEA;
 }
+async function InitBare(Context) {
+  if (ALL_PRODUCTS == null) {
+    const result = await getAllProducts();
+    sortProducts(result);
+    Context.setAttribute("TeaBrewed", true);
+  }
+}
 
+/* Move to a data context */
 function initializeList(teaNames) {
   ALL_PRODUCTS.forEach(
     (item) =>

@@ -7,7 +7,9 @@
       ./Card/Categories/tea-categories.html 
       ./Card/TeaResult/tea-result.html
       ./Card/TeaPool/tea-pool.html
-      ./Card/Card.html"
+      ./Card/Card.html
+      ./API/HappyEarthTeaContext.html
+      ./Util/HappyTeaPickerContextProvider.html"
     ></script>
     <script src="https://unpkg.com/tram-lite@5"></script>
     <!-- Local JS -->
@@ -85,21 +87,21 @@
       <section description>
         <p>Wasn't even Looking when I found you</p>
       </section>
-      <section teaCat>
-        <cat-button id="Cat"></cat-button>
-      </section>
-      <section expandArea class="card">
-        <tea-card></tea-card>
-      </section>
-    </main>
-    <!-- Initialize the Data coming in from AllProducts.js -->
-    <script>
-      initialize(
-        this.document.getElementById("Cat"),
-        this.document.querySelector("tea-card")
-      );
-    </script>
+      <Happy-Earth-Tea-Context>
+        <Happy-Tea-Picker-Context-Provider>
+          <section teaCat>
+            <cat-button id="Cat"></cat-button>
+          </section>
 
-    <!--/ Initialize the Data coming in from AllProducts.js -->
+          <section expandArea class="card">
+            <tea-card>
+              <tea-categories></tea-categories>
+              <tea-result></tea-result>
+              <tea-pool></tea-pool>
+            </tea-card>
+          </section>
+        </Happy-Tea-Picker-Context-Provider>
+      </Happy-Earth-Tea-Context>
+    </main>
   </body>
 </html>
