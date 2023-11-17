@@ -8,13 +8,13 @@ function ToggleTeaNames(teaPoolButton) {
   }
 }
 
-function CategoryChange(teaPool)
-{
-  console.log("Category Change ", CURRENT_PRODUCT);
-  const teaNames = teaPool.querySelector("#teaNames");
-  teaNames.innerHTML = "";
-  CURRENT_PRODUCT.forEach(
-    (item) =>
-      (teaNames.innerHTML += `<p style="display:block">${item.title}</p>`)
-  );
+function populateList(teaPool) {
+  if (CURRENT_PRODUCT != null) {
+    const teaNames = teaPool.shadowRoot.getElementById("teaNames");
+    teaNames.innerHTML = "";
+    CURRENT_PRODUCT.forEach(
+      (item) =>
+        (teaNames.innerHTML += `<p style="display:block">${item.title}</p>`)
+    );
+  }
 }

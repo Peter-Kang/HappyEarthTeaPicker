@@ -30,7 +30,7 @@ const NOT_TEA = [
 ];
 // Product Types
 const GREEN_TEA_TYPES = ["green tea", "matcha", "yellow tea"];
-const YELLOW_TEA_TYPE = "yellow tea"
+const YELLOW_TEA_TYPE = "yellow tea";
 const BLACK_TEA_TYPES = [
   "black tea",
   "black tea > decaf",
@@ -55,7 +55,7 @@ const HERBAL = []; //Herbal
 const OOLONG_TEA = []; //Oolong | Oolong Tea | Oolong > Chinese Oolong > Rock Oolong > Yancha
 const PUERH_TEA = []; //Puerh
 const CHAI_TEA = []; //Chai
-const YELLOW_TEA = [];//Yellow.
+const YELLOW_TEA = []; //Yellow.
 //surmise
 const TEA_ENUMS = {
   0: "ALL",
@@ -66,7 +66,7 @@ const TEA_ENUMS = {
   5: "HERBAL",
   6: "PUERH_TEA",
   7: "CHAI_TEA",
-  8: "YELLOW_TEA"
+  8: "YELLOW_TEA",
 };
 const TEA_CATEGORIES = {};
 
@@ -104,8 +104,7 @@ function sortProducts(rawResults) {
     const index_ALL_PRODUCTS = ALL_PRODUCTS.length;
     if (GREEN_TEA_TYPES.some((name) => lower_product_type === name)) {
       GREEN_TEAS.push(index_ALL_PRODUCTS);
-      if( lower_product_type === YELLOW_TEA_TYPE )
-      {
+      if (lower_product_type === YELLOW_TEA_TYPE) {
         YELLOW_TEA.push(index_ALL_PRODUCTS);
       }
     } else if (BLACK_TEA_TYPES.some((name) => lower_product_type === name)) {
@@ -160,7 +159,10 @@ async function initialize(cat, teaPool) {
     //Enable button
     cat.shadowRoot.querySelector("button").removeAttribute("disabled");
     //populate the text area
-    initializeList(teaPool.shadowRoot.getElementById("teaNames"));
-   
+    initializeList(
+      teaPool.shadowRoot
+        .querySelector("tea-pool")
+        .shadowRoot.getElementById("teaNames")
+    );
   }
 }

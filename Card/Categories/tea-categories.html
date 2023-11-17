@@ -72,10 +72,4 @@
     </input>
     <tl-broadcast tl-dependencies="category" tl-eventname="category-change" tl-direction="up"></tl-broadcast>
   </div>
-  <script tl-effect>
-    //Listen to category changes to update the tea pool
-    this.addEventListener("category-change",()=>{
-        console.log("Category Change ", CURRENT_PRODUCT);
-    });
-</script>
 </tea-categories>

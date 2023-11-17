@@ -4,8 +4,8 @@ function SwitchTeaPool(selection, index) {
   } else {
     CURRENT_PRODUCT = createNewTeaNames(TEA_ENUMS[index]);
   }
-  selection.parentNode.parentNode.host.setAttribute("category",index);
-  category =index;
+  selection.parentNode.parentNode.host.setAttribute("category", index);
+  category = index;
 }
 
 function createNewTeaNames(currentProductID) {
@@ -14,4 +14,3 @@ function createNewTeaNames(currentProductID) {
   listOfIndices.forEach((index) => result.push(ALL_PRODUCTS[index]));
   return result;
 }
-

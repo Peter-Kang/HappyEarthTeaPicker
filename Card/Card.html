@@ -1,4 +1,16 @@
 <tea-card>
-    <style>
-    </style>
+  <div>
+    <!-- Contents -->
+    <tea-categories></tea-categories>
+    <tea-result></tea-result>
+    <tea-pool></tea-pool>
+  </div>
+  <!-- End of Contents -->
+  <script tl-effect>
+    //Listen to category changes to update the tea pool
+
+    this.addEventListener("category-change", (event) => {
+      CategoryChange(this);
+    });
+  </script>
 </tea-card>

@@ -13,9 +13,10 @@
     <!-- Local JS -->
     <script src="./API/AllProducts.js"></script>
     <script src="./Util/Randomizer.js"></script>
-    <script src="./Card/Cat/CatButton.js"></script>
+    <script src="./Cat/CatButton.js"></script>
     <script src="./Card/Categories/tea-categories.js"></script>
     <script src="./Card/TeaPool/tea-pool.js"></script>
+    <script src="./Card/Card.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./styles.css" />
@@ -88,15 +89,15 @@
         <cat-button id="Cat"></cat-button>
       </section>
       <section expandArea class="card">
-        <tea-categories></tea-categories>
-        <tea-result></tea-result>
-        <tea-pool></tea-pool>
-        </div>
+        <tea-card></tea-card>
       </section>
     </main>
     <!-- Initialize the Data coming in from AllProducts.js -->
     <script>
-      initialize(this.document.getElementById("Cat"), this.document.querySelector("tea-pool"));
+      initialize(
+        this.document.getElementById("Cat"),
+        this.document.querySelector("tea-card")
+      );
     </script>
 
     <!--/ Initialize the Data coming in from AllProducts.js -->
