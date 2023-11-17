@@ -12,9 +12,10 @@ function populateList(teaPool) {
   if (CURRENT_PRODUCT != null) {
     const teaNames = teaPool.shadowRoot.getElementById("teaNames");
     teaNames.innerHTML = "";
-    CURRENT_PRODUCT.forEach(
-      (item) =>
-        (teaNames.innerHTML += `<p style="display:block">${item.title}</p>`)
-    );
+    CURRENT_PRODUCT.forEach((item) => {
+      const newPTag = document.createElement("p");
+      newPTag.innerHTML = item.title;
+      teaNames.appendChild(newPTag);
+    });
   }
 }
