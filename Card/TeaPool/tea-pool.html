@@ -1,0 +1,36 @@
+<tea-pool>
+    <style>
+         /*Look of the button*/
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        /*Tea title font*/
+        h3 {
+            color: white;
+            text-shadow: black 1px 1px 2px;
+        }
+        section[teaList] {
+            color: black;
+        }
+        /*Hide the tea names on start*/
+        #teaNames {
+            display: none;
+        }
+    </style>
+    <section teaList>
+        <hr />
+        <button onclick="ToggleTeaNames(this)">
+            <h3>Tea Pool</h3>
+        </button>
+        <div id="teaNames" style="display: none">
+        </div>
+    </section>
+    <script tl-effect>
+        //Listen to category changes to update the tea pool
+        this.addEventListener("category-change",()=>{
+            console.log("Category Change ", CURRENT_PRODUCT);
+        });
+    </script> 
+</tea-pool>
