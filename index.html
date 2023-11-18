@@ -13,12 +13,13 @@
     ></script>
     <script src="https://unpkg.com/tram-lite@5"></script>
     <!-- Local JS -->
-    <script src="./API/AllProducts.js"></script>
     <script src="./Util/Randomizer.js"></script>
     <script src="./Cat/CatButton.js"></script>
     <script src="./Card/Card.js"></script>
     <script src="./Card/Categories/tea-categories.js"></script>
     <script src="./Card/TeaPool/tea-pool.js"></script>
+    <script src="./API/AllProducts.js"></script>
+    <script src="./Util/initalize.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./styles.css" />
@@ -85,14 +86,14 @@
     </header>
     <main>
       <section description>
-        <p>Wasn't even Looking when I found you</p>
+        <p>Something Cute</p>
       </section>
       <Happy-Earth-Tea-Context>
         <Happy-Tea-Picker-Context-Provider>
+          <!-- Content to use data-->
           <section teaCat>
             <cat-button id="Cat"></cat-button>
           </section>
-
           <section expandArea class="card">
             <tea-card>
               <tea-categories></tea-categories>
@@ -100,6 +101,7 @@
               <tea-pool></tea-pool>
             </tea-card>
           </section>
+          <!-- Content to use data-->
         </Happy-Tea-Picker-Context-Provider>
       </Happy-Earth-Tea-Context>
     </main>

@@ -1,12 +1,12 @@
-<Happy-Earth-Tea-Context>
-  <script src="https://unpkg.com/tram-lite@5.0.0"></script>
+<Happy-Earth-Tea-Context teabrewed="false">
   <tl-broadcast
-    tl-dependencies="TeaBrewed"
-    tl-eventname="Tea-Brewed"
+    tl-dependencies="teabrewed"
+    tl-eventname="tea-brewed"
     tl-direction="down"
   ></tl-broadcast>
   <slot></slot>
   <script tl-effect>
-    InitBare(this); //creates variables attached to the window. move into context
+    InitBare(this);
+    //creates variables attached to the window. move into context's .data
   </script>
 </Happy-Earth-Tea-Context>

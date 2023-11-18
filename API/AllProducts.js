@@ -3,8 +3,6 @@ const URL_ALL_PRODUCTS =
   "https://happy-earth-tea.myshopify.com/collections/all/products.json?limit=9999";
 
 let ALL_PRODUCTS = null;
-let category = 0;
-let CURRENT_PRODUCT = null;
 //Search Lists
 const NOT_TEA = [
   "books",
@@ -143,34 +141,11 @@ function sortProducts(rawResults) {
   TEA_CATEGORIES["CHAI_TEA"] = CHAI_TEA;
   TEA_CATEGORIES["YELLOW_TEA"] = YELLOW_TEA;
 }
+
 async function InitBare(Context) {
   if (ALL_PRODUCTS == null) {
     const result = await getAllProducts();
     sortProducts(result);
     Context.setAttribute("TeaBrewed", true);
-  }
-}
-
-/* Move to a data context */
-function initializeList(teaNames) {
-  ALL_PRODUCTS.forEach(
-    (item) =>
-      (teaNames.innerHTML += `<p style="display:block">${item.title}</p>`)
-  );
-}
-
-async function initialize(cat, teaPool) {
-  if (ALL_PRODUCTS == null) {
-    const result = await getAllProducts();
-    sortProducts(result);
-    CURRENT_PRODUCT = ALL_PRODUCTS;
-    //Enable button
-    cat.shadowRoot.querySelector("button").removeAttribute("disabled");
-    //populate the text area
-    initializeList(
-      teaPool.shadowRoot
-        .querySelector("tea-pool")
-        .shadowRoot.getElementById("teaNames")
-    );
   }
 }
