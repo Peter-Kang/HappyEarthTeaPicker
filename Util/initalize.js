@@ -21,3 +21,5 @@ async function initialize(cat, teaPool) {
     );
   }
 }
+
+function initialize() {}

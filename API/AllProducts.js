@@ -147,5 +147,6 @@ async function InitBare(Context) {
     const result = await getAllProducts();
     sortProducts(result);
     Context.setAttribute("TeaBrewed", true);
+    Context.AllProducts = ALL_PRODUCTS;
   }
 }

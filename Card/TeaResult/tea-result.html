@@ -1,4 +1,4 @@
-<tea-result>
+<tea-result product_id="-1">
   <style>
     /*Center the title and tea title*/
     p,
@@ -13,4 +13,14 @@
     <div id="Img"></div>
     <div id="TeaText"></div>
   </section>
+  <script tl-effect>
+    this.loadProductData = (t) => {
+      this.setAttribute("title", t.title);
+    };
+  </script>
+  <tl-broadcast
+    tl-dependencies="product_id"
+    tl-eventname="get-product-by-id"
+    tl-direction="up"
+  ></tl-broadcast>
 </tea-result>

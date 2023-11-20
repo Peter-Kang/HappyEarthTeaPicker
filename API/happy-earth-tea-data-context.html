@@ -1,0 +1,33 @@
+<happy-earth-tea-data-context teabrewed="false">
+  <tl-broadcast
+    tl-dependencies="teabrewed"
+    tl-eventname="tea-brewed"
+    tl-direction="down"
+  ></tl-broadcast>
+
+  <slot></slot>
+
+  <script tl-effect>
+    InitBare(this);
+    this.getAllProducts = () => {
+      return this.AllProduct;
+    };
+    //creates variables attached to the window. move into context's .data
+    //Move ALlProducts.js here
+  </script>
+  <script>
+    //APIs
+    this.addEventListener("get-product-by-id", (event) => {
+      const id = event.detail.originalElement.getAttribute("product_id");
+      event.detail.originalElement.loadProductData();
+    });
+
+    this.addEventListener("get-categories", (event) => {});
+
+    this.addEventListener("get-category-by-name", (event) => {});
+
+    this.addEventListener("get-tags", (event) => {});
+
+    this.addEventListener("get-tags-by-name", (event) => {});
+  </script>
+</happy-earth-tea-data-context>
