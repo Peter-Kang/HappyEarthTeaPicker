@@ -1,48 +1,8 @@
 //All Teas
-const URL_ALL_PRODUCTS =
-  "https://happy-earth-tea.myshopify.com/collections/all/products.json?limit=9999";
 
 let ALL_PRODUCTS = null;
 //Search Lists
-const NOT_TEA = [
-  "books",
-  "accessories",
-  "teaware",
-  "gift card",
-  "gist_gift_card",
-  "teaware > matcha bowl > japanese tea bowl > chawan",
-  "coconut matcha latte iced",
-  "teaware > tea mug > tea cup",
-  "pu-erh made tea",
-  "teaware > tea mug > tea cup",
-  "tea cup carved bellflower 8.5 oz",
-  "teaware > tea pot",
-  "gifts > tea gifts >",
-  "matcha hand sifter",
-  "matcha scoop - chashaku",
-  "matcha whisk holder",
-  "matcha whisk",
-  "15-piece tin tea set - assorted styles available",
-  "winter spice tin",
-  "roch-cha chai tin",
-];
-// Product Types
-const GREEN_TEA_TYPES = ["green tea", "matcha", "yellow tea"];
-const YELLOW_TEA_TYPE = "yellow tea";
-const BLACK_TEA_TYPES = [
-  "black tea",
-  "black tea > decaf",
-  "black tea > darjeeling first flush > organic black tea > first flush tea > loose leaf",
-];
-const WHITE_TEA_TYPES = ["white tea"];
-const HERBAL_TYPES = ["herbal"];
-const OOLONG_TEA_TYPES = [
-  "oolong",
-  "coconut oolong tea",
-  "oolong > chinese oolong > rock oolong > yancha",
-];
-const PUERH_TEA_TYPES = ["puerh"];
-const CHAI_TEA_TYPES = ["chai"];
+
 // Tags
 const TEA_TAGS = {}; // Key string : Value array
 //Commonly Filtered
@@ -55,27 +15,8 @@ const PUERH_TEA = []; //Puerh
 const CHAI_TEA = []; //Chai
 const YELLOW_TEA = []; //Yellow.
 //surmise
-const TEA_ENUMS = {
-  0: "ALL",
-  1: "WHITE_TEA",
-  2: "GREEN_TEA",
-  3: "OOLONG_TEA",
-  4: "BLACK_TEA",
-  5: "HERBAL",
-  6: "PUERH_TEA",
-  7: "CHAI_TEA",
-  8: "YELLOW_TEA",
-};
-const TEA_CATEGORIES = {};
 
-//Functions
-async function getAllProducts() {
-  //Get the products
-  const response = await fetch(URL_ALL_PRODUCTS);
-  const products = await response.json();
-  //return the value
-  return products.products;
-}
+const TEA_CATEGORIES = {};
 
 //ToDo Combine with main filter
 function sortProducts(rawResults) {
@@ -121,14 +62,6 @@ function sortProducts(rawResults) {
       continue; //meaning don't add
     }
     ALL_PRODUCTS.push(item);
-    //tags
-    item.tags.forEach((tag) => {
-      if (tag in TEA_TAGS) {
-        TEA_TAGS[tag].push(index_ALL_PRODUCTS);
-      } else {
-        TEA_TAGS[tag] = [index_ALL_PRODUCTS];
-      }
-    });
   }
   //populate the tea categories separate from the tags
   // Keeping the original variables To make it easy to display if going into browser console.
@@ -140,13 +73,4 @@ function sortProducts(rawResults) {
   TEA_CATEGORIES["PUERH_TEA"] = PUERH_TEA;
   TEA_CATEGORIES["CHAI_TEA"] = CHAI_TEA;
   TEA_CATEGORIES["YELLOW_TEA"] = YELLOW_TEA;
-}
-
-async function InitBare(Context) {
-  if (ALL_PRODUCTS == null) {
-    const result = await getAllProducts();
-    sortProducts(result);
-    Context.setAttribute("TeaBrewed", true);
-    Context.AllProducts = ALL_PRODUCTS;
-  }
 }
