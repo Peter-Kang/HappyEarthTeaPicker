@@ -1,11 +1,13 @@
 function SwitchTeaPool(selection, index) {
+  /*
   if (index == 0) {
     CURRENT_PRODUCT = ALL_PRODUCTS;
   } else {
     CURRENT_PRODUCT = createNewTeaNames(TEA_ENUMS[index]);
   }
-  selection.parentNode.parentNode.host.setAttribute("category", index);
   category = index;
+  */
+  selection.parentNode.parentNode.host.setAttribute("category", index);
 }
 
 function createNewTeaNames(currentProductID) {

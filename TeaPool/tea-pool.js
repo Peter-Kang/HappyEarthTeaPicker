@@ -1,4 +1,5 @@
 function ToggleTeaNames(teaPoolButton) {
+  //couldn't move this into the script tag, is this a shadowDOM issue?
   const teaNames = teaPoolButton.parentNode.querySelector("#teaNames");
   const isInvisible = teaNames.style.display === "none";
   if (isInvisible) {

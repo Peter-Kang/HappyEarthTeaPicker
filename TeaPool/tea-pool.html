@@ -40,6 +40,10 @@
         this.setAttribute("category", 0);
       }
     });
+    this.addEventListener("change-category", (event) => {
+      const category = event.detail.originalElement.getAttribute("category");
+      this.setAttribute("category", category);
+    });
   </script>
   <!-- Send event up to get category-->
   <tl-broadcast
