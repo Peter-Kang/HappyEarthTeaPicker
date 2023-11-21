@@ -4,10 +4,9 @@
     <script
       src="https://unpkg.com/tram-lite@5/output/import-components.js"
       tl-components="./Cat/cat.html 
-      ./Card/Categories/tea-categories.html 
-      ./Card/TeaResult/tea-result.html
-      ./Card/TeaPool/tea-pool.html
-      ./Card/Card.html
+      ./Categories/tea-categories.html 
+      ./TeaResult/tea-result.html
+      ./TeaPool/tea-pool.html
       ./API/happy-earth-tea-data-context.html
       ./Util/tea-category-picking-context.html"
     ></script>
@@ -15,9 +14,8 @@
     <!-- Local JS -->
     <script src="./Util/Randomizer.js"></script>
     <script src="./Cat/CatButton.js"></script>
-    <script src="./Card/Card.js"></script>
-    <script src="./Card/Categories/tea-categories.js"></script>
-    <script src="./Card/TeaPool/tea-pool.js"></script>
+    <script src="./Categories/tea-categories.js"></script>
+    <script src="./TeaPool/tea-pool.js"></script>
     <script src="./Util/initalize.js"></script>
 
     <!-- CSS -->
@@ -94,11 +92,9 @@
             <cat-button id="Cat"></cat-button>
           </section>
           <section expandArea class="card">
-            <tea-card>
-              <tea-categories></tea-categories>
-              <tea-result></tea-result>
-              <tea-pool></tea-pool>
-            </tea-card>
+            <tea-categories></tea-categories>
+            <tea-result></tea-result>
+            <tea-pool></tea-pool>
           </section>
           <!-- Content to use data-->
         </tea-category-picking-context>

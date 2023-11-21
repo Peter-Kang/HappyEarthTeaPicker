@@ -30,4 +30,9 @@
   <button disabled onclick="getRandomProduct(this)" title="Click to Pick a Tea">
     <cat-img></cat-img>
   </button>
+  <script tl-effect>
+    this.addEventListener("tea-brewed", () => {
+      this.shadowRoot.querySelector("button").removeAttribute("disabled");
+    });
+  </script>
 </cat-button>

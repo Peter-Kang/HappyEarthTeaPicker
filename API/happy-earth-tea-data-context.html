@@ -153,6 +153,7 @@
         initializeCategories(Context);
         sortProducts(result, Context);
         Context.setAttribute("teabrewed", true);
+        console.log("teabrewed");
       }
     }
     Init(this);
@@ -160,15 +161,31 @@
   <script tl-effect>
     //APIs
     this.addEventListener("get-product-by-id", (event) => {
-      //const id = event.detail.originalElement.getAttribute("id");
-      //event.detail.originalElement.loadProductData();
+      const id = event.detail.originalElement.getAttribute("id");
+      //return the product ID
+      event.detail.originalElement.loadProductData(
+        this.TEA_CATEGORIES.get("ALL").get(id)
+      );
     });
 
-    this.addEventListener("get-categories", (event) => {});
+    this.addEventListener("get-categories-enums", (event) => {
+      const id = event.detail.originalElement.getAttribute("id");
+      //return the product ID
+      event.detail.originalElement.loadProductData();
+    });
 
-    this.addEventListener("get-category-by-name", (event) => {});
+    this.addEventListener("get-category-by-enum", (event) => {
+      const index = parseInt(
+        event.detail.originalElement.getAttribute("category")
+      );
+      if (index >= 0) {
+        //return the product ID
+        const result = this.TEA_CATEGORIES.get(this.TEA_ENUMS.get(index));
+        event.detail.originalElement.loadCategoryByEnum(result);
+      }
+    });
 
-    this.addEventListener("get-tags", (event) => {});
+    this.addEventListener("get-all-tags", (event) => {});
 
     this.addEventListener("get-tags-by-name", (event) => {});
   </script>

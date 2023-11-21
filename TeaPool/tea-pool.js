@@ -8,14 +8,17 @@ function ToggleTeaNames(teaPoolButton) {
   }
 }
 
-function populateList(teaPool) {
-  if (CURRENT_PRODUCT != null) {
+function populateList(teaPool, currentPool) {
+  //console.log("populating list"); this gets called twice?
+  if (currentPool) {
     const teaNames = teaPool.shadowRoot.getElementById("teaNames");
     teaNames.innerHTML = "";
-    CURRENT_PRODUCT.forEach((item) => {
+    currentPool.forEach((item) => {
       const newPTag = document.createElement("p");
       newPTag.innerHTML = item.title;
       teaNames.appendChild(newPTag);
     });
   }
+  // look into this when you have time
+  // it's making a call without the tea-brewed event
 }
