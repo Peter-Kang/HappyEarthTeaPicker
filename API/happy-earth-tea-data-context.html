@@ -100,7 +100,7 @@
     function sortProductsByTag(item, context) {
       //tags
       item.tags?.forEach((tag) => {
-        if (tag in context.TEA_TAGS) {
+        if (context.TEA_TAGS.has(tag)) {
           context.TEA_TAGS.get(tag).set(item.id, item);
         } else {
           context.TEA_TAGS.set(tag, new Map());
