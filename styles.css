@@ -64,7 +64,7 @@ p {
 
 /*Background*/
 body {
-  background: rgb(145, 209, 139);
+  /*background: rgb(145, 209, 139);*/
   background: radial-gradient(
     circle,
     rgba(145, 209, 139, 1) 0%,
