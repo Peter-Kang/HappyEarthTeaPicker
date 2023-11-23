@@ -40,7 +40,7 @@
         this.setAttribute("category", 0);
       }
     });
-    this.addEventListener("change-category", (event) => {
+    this.addEventListener("category-change", (event) => {
       const category = event.detail.originalElement.getAttribute("category");
       this.setAttribute("category", category);
     });

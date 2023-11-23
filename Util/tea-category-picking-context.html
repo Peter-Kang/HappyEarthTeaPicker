@@ -1,8 +1,19 @@
-<tea-category-picking-context>
+<tea-category-picking-context category="-1">
   <slot></slot>
   <script tl-effect>
     this.addEventListener("tea-brewed", (event) => {
       //his.AllTeas = event.detail.originalElement.;
     });
+    this.addEventListener("category-change", (event) => {
+      const category = event.detail.originalElement.getAttribute("category");
+      if (category >= 0) {
+        this.setAttribute("category", category);
+      }
+    });
   </script>
+  <tl-broadcast
+    tl-dependencies="category"
+    tl-eventname="category-change"
+    tl-direction="down"
+  ></tl-broadcast>
 </tea-category-picking-context>
