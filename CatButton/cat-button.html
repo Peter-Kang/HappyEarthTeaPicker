@@ -27,8 +27,13 @@
     }
   </style>
   <p>Click on the cat to pick a Tea</p>
-  <button disabled onclick="getRandomProduct(this)" title="Click to Pick a Tea">
-    <cat-img></cat-img>
+  <button
+    disabled
+    tl-rebroadcast
+    tl-eventmap="click:pick-tea"
+    tl-direction="up"
+  >
+    <cat-img title="Click to Pick a Tea"></cat-img>
   </button>
   <script tl-effect>
     this.addEventListener("tea-brewed", () => {

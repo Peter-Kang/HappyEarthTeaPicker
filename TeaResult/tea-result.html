@@ -1,4 +1,4 @@
-<tea-result product_id="-1">
+<tea-result product_id="-1" category="-1">
   <style>
     /*Center the title and tea title*/
     p,
@@ -13,15 +13,68 @@
     <div id="Img"></div>
     <div id="TeaText"></div>
   </section>
+
+  <!--Initialization -->
   <script tl-effect>
-    this.loadProductData = (t) => {
-      this.setAttribute("title", t.title);
+    this.addEventListener("tea-brewed", (event) => {
+      //Could populate via event
+      //event.detail.originalElement.TEA_CATEGORIES.get('ALL');
+      if (event.detail.originalElement.getAttribute("teabrewed") === "true") {
+        this.setAttribute("category", 0);
+      }
+    });
+  </script>
+  <!--Gets the category data on category change -->
+  <script tl-effect>
+    // listener
+    this.addEventListener("category-change", (event) => {
+      const category = event.detail.originalElement.getAttribute("category");
+      this.setAttribute("category", category);
+    });
+    // callback
+    this.loadCategoryByEnum = (categories) => {
+      this.categoryToUse = categories;
     };
   </script>
-  <tl-effect
-    tl-broadcast
-    tl-dependencies="product_id"
-    tl-eventname="get-product-by-id"
+  <!-- event sender-->
+  <tl-broadcast
+    tl-dependencies="category"
+    tl-eventname="get-category-by-enum"
     tl-direction="up"
-  ></tl-effect>
+  ></tl-broadcast>
+
+  <!--Pick a Tea -->
+  <script tl-effect>
+    // Format the html body
+    function filterBodyHtmlString(bodyHtml) {
+      return bodyHtml
+        .replace(/(<img.*">)+/g, "")
+        .replace(/(<iframe.*iframe>)+/g, "");
+    }
+
+    // listener
+    this.addEventListener("pick-tea", (event) => {
+      // pick a random tea here
+      const random_index = Math.floor(Math.random() * this.categoryToUse.size);
+      const random_product = Array.from(this.categoryToUse.values())[
+        random_index
+      ];
+
+      if (!random_product) {
+        return;
+      }
+      //display random product
+      //title
+      this.shadowRoot.getElementById("TeaTitle").innerHTML =
+        random_product.title;
+      //Set the image
+      this.shadowRoot.getElementById("Img").innerHTML =
+        "<img width='15%' src='" +
+        JSON.stringify(random_product.images[0].src).replace('"', "") +
+        "/resize=width:200'></img>";
+      //Set the description
+      this.shadowRoot.getElementById("TeaText").innerHTML =
+        filterBodyHtmlString(random_product.body_html).trim();
+    });
+  </script>
 </tea-result>
