@@ -1,0 +1,192 @@
+<happy-earth-tea-data-context teabrewed="false">
+  <tl-broadcast
+    tl-dependencies="teabrewed"
+    tl-eventname="tea-brewed"
+    tl-direction="down"
+  ></tl-broadcast>
+
+  <slot></slot>
+
+  <script tl-effect>
+    //Static data
+    this.URL_ALL_PRODUCTS =
+      "https://happy-earth-tea.myshopify.com/collections/all/products.json?limit=9999";
+
+    this.NOT_TEA = new Set([
+      "books",
+      "accessories",
+      "teaware",
+      "gift card",
+      "gist_gift_card",
+      "teaware > matcha bowl > japanese tea bowl > chawan",
+      "coconut matcha latte iced",
+      "teaware > tea mug > tea cup",
+      "pu-erh made tea",
+      "teaware > tea mug > tea cup",
+      "tea cup carved bellflower 8.5 oz",
+      "teaware > tea pot",
+      "gifts > tea gifts >",
+      "matcha hand sifter",
+      "matcha scoop - chashaku",
+      "matcha whisk holder",
+      "matcha whisk",
+      "15-piece tin tea set - assorted styles available",
+      "winter spice tin",
+      "roch-cha chai tin",
+    ]);
+    // Product Types
+    this.TEA_PRODUCT_TYPES = new Map([
+      ["WHITE_TEA", new Set(["white tea"])],
+      ["GREEN_TEA", new Set(["green tea", "matcha", "yellow tea"])],
+      [
+        "OOLONG_TEA",
+        new Set([
+          "oolong",
+          "coconut oolong tea",
+          "oolong > chinese oolong > rock oolong > yancha",
+        ]),
+      ],
+      [
+        "BLACK_TEA",
+        new Set([
+          "black tea",
+          "black tea > decaf",
+          "black tea > darjeeling first flush > organic black tea > first flush tea > loose leaf",
+        ]),
+      ],
+      ["HERBAL", new Set(["herbal"])],
+      ["PUERH_TEA", new Set(["puerh"])],
+      ["CHAI_TEA", new Set(["chai"])],
+      ["YELLOW_TEA", new Set(["yellow tea"])],
+    ]);
+    //Enums
+    this.TEA_ENUMS = new Map([
+      [0, "ALL"],
+      [1, "WHITE_TEA"],
+      [2, "GREEN_TEA"],
+      [3, "OOLONG_TEA"],
+      [4, "BLACK_TEA"],
+      [5, "HERBAL"],
+      [6, "PUERH_TEA"],
+      [7, "CHAI_TEA"],
+      [8, "YELLOW_TEA"],
+    ]);
+    this.TEA_CATEGORIES = new Map(); //Key: TEA_ENUM value Value: Map{key:id(int) value:Object(tea data)}
+    this.TEA_TAGS = new Map(); //Key: Tag Name, Value: Map{key:id(int) value:Object(tea data)}
+
+    //
+    //initialization functions
+    //
+    function initializeCategories(context) {
+      //Initiate Categories
+      context.TEA_ENUMS.forEach((value, key) => {
+        if (context.TEA_CATEGORIES.has(value) === false) {
+          //create a map inside tea collection for each enum
+          context.TEA_CATEGORIES.set(value, new Map());
+        }
+      });
+    }
+    //Functions
+    function sortProductsByCategory(item, lowercase_product_type, context) {
+      let added = false;
+      context.TEA_PRODUCT_TYPES.forEach((value, key) => {
+        if (value.has(lowercase_product_type)) {
+          context.TEA_CATEGORIES.get(key).set(item.id, item);
+          added = true;
+        }
+      });
+      return added;
+    }
+    function sortProductsByTag(item, context) {
+      //tags
+      item.tags?.forEach((tag) => {
+        if (context.TEA_TAGS.has(tag)) {
+          context.TEA_TAGS.get(tag).set(item.id, item);
+        } else {
+          context.TEA_TAGS.set(tag, new Map());
+          context.TEA_TAGS.get(tag).set(item.id, item);
+        }
+      });
+    }
+
+    function sortProducts(rawResults, context) {
+      //iterate over the raw results
+      for (let i = 0; i < rawResults.length; i++) {
+        const item = rawResults[i];
+        //Check product types
+        if (!item.product_type) {
+          // use the name instead
+          item.product_type = item.title.toLowerCase();
+        }
+        //Trim products that could be miss categorized
+        const lower_product_type = item.product_type.toLowerCase();
+        if (
+          context.NOT_TEA.has(lower_product_type) ||
+          ((lower_product_type === "matcha" || lower_product_type === "chai") &&
+            (context.NOT_TEA.has(item.title.toLowerCase()) ||
+              item.tags?.includes("gifts"))) //tags is an array
+        ) {
+          continue; // trim results
+        }
+        //Sort teas
+        // item - the object from the raw result
+        // lower_product_type - lower case name of the product type
+        if (sortProductsByCategory(item, lower_product_type, context)) {
+          //It was added to a category
+          context.TEA_CATEGORIES.get("ALL").set(item.id, item); //Add to all products
+          sortProductsByTag(item, context); //sort by tags
+        }
+      }
+    }
+
+    async function getAllProducts(Context) {
+      //Get the products
+      const response = await fetch(Context.URL_ALL_PRODUCTS);
+      const products = await response.json();
+      //return the value
+      return products.products;
+    }
+
+    async function Init(Context) {
+      if (Context.getAttribute("teaBrewed") === "false") {
+        const result = await getAllProducts(Context);
+        initializeCategories(Context);
+        sortProducts(result, Context);
+        Context.setAttribute("teabrewed", true);
+        console.log("teabrewed");
+      }
+    }
+    Init(this);
+  </script>
+  <script tl-effect>
+    //APIs
+    this.addEventListener("get-product-by-id", (event) => {
+      const id = event.detail.originalElement.getAttribute("id");
+      //return the product ID
+      event.detail.originalElement.loadProductData(
+        this.TEA_CATEGORIES.get("ALL").get(id)
+      );
+    });
+
+    this.addEventListener("get-categories-enums", (event) => {
+      const id = event.detail.originalElement.getAttribute("id");
+      //return the product ID
+      event.detail.originalElement.loadProductData();
+    });
+
+    this.addEventListener("get-category-by-enum", (event) => {
+      const index = parseInt(
+        event.detail.originalElement.getAttribute("category")
+      );
+      if (index >= 0) {
+        //return the product ID
+        const result = this.TEA_CATEGORIES.get(this.TEA_ENUMS.get(index));
+        event.detail.originalElement.loadCategoryByEnum(result);
+      }
+    });
+
+    this.addEventListener("get-all-tags", (event) => {});
+
+    this.addEventListener("get-tags-by-name", (event) => {});
+  </script>
+</happy-earth-tea-data-context>

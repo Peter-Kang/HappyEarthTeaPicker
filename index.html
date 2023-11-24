@@ -2,15 +2,19 @@
   <head>
     <!-- Tram-Lite-->
     <script
-      src="https://unpkg.com/tram-lite@4.2.7/output/import-components.js"
-      tl-components="./Cat/cat.html ./Cat/categories/tea-categories.html"
+      src="https://unpkg.com/tram-lite@5/output/import-components.js"
+      tl-components="./CatButton/cat-button.html 
+      ./Categories/tea-categories.html 
+      ./TeaResult/tea-result.html
+      ./TeaPool/tea-pool.html
+      ./API/happy-earth-tea-data-context.html
+      ./Util/tea-category-picking-context.html"
     ></script>
-    <script src="https://unpkg.com/tram-lite@4.2.7"></script>
+    <script src="https://unpkg.com/tram-lite@5"></script>
     <!-- Local JS -->
-    <script src="./API/AllProducts.js"></script>
     <script src="./Util/Randomizer.js"></script>
-    <script src="./Cat/CatButton.js"></script>
-    <script src="./Cat/categories/tea-categories.js"></script>
+    <script src="./CatButton/CatButton.js"></script>
+    <script src="./TeaPool/tea-pool.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./styles.css" />
@@ -23,7 +27,7 @@
     />
 
     <!-- Meta Tags-->
-    <link rel="icon" type="image/png" href="./happy" />
+    <link rel="icon" type="image/png" href="./happy.png" />
     <link
       rel="icon"
       type="image/png"
@@ -77,16 +81,22 @@
     </header>
     <main>
       <section description>
-        <p>Great source of Serendipitea</p>
+        <p>Wish I brewed you sooner</p>
       </section>
-      <section teaResults>
-        <cat-button id="Cat"></cat-button>
-      </section>
+      <happy-earth-tea-data-context>
+        <tea-category-picking-context>
+          <!-- Content to use data-->
+          <section teaCat>
+            <cat-button id="Cat"></cat-button>
+          </section>
+          <section expandArea class="card">
+            <tea-categories></tea-categories>
+            <tea-result></tea-result>
+            <tea-pool></tea-pool>
+          </section>
+          <!-- Content to use data-->
+        </tea-category-picking-context>
+      </happy-earth-tea-data-context>
     </main>
-    <!-- Initialize the Data coming in from AllProducts.js -->
-    <script>
-      initialize(this.document.getElementById("Cat"));
-    </script>
-    <!--/ Initialize the Data coming in from AllProducts.js -->
   </body>
 </html>

@@ -1,0 +1,43 @@
+<cat-button>
+  <style>
+    /*Center and display the cat*/
+    cat-img {
+      content: url("./sleep.png");
+      width: 50%;
+      height: auto;
+      display: block;
+      text-align: center;
+      align-self: center;
+      margin: auto;
+    }
+    /*Look of the cat button*/
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    /*Button interaction*/
+    button:hover cat-img,
+    button:active cat-img {
+      content: url("./happy.png");
+    }
+    /*Center the instructions*/
+    p {
+      text-align: center;
+    }
+  </style>
+  <p>Click on the cat to pick a Tea</p>
+  <button
+    disabled
+    tl-rebroadcast
+    tl-eventmap="click:pick-tea"
+    tl-direction="up"
+  >
+    <cat-img title="Click to Pick a Tea"></cat-img>
+  </button>
+  <script tl-effect>
+    this.addEventListener("tea-brewed", () => {
+      this.shadowRoot.querySelector("button").removeAttribute("disabled");
+    });
+  </script>
+</cat-button>

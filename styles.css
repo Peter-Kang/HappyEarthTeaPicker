@@ -21,7 +21,8 @@ main {
   grid-template-columns: 1fr;
   grid-template-areas:
     "description"
-    "teaResult";
+    "teaCat"
+    "expandArea";
   gap: 1em;
 }
 /* Sections centering */
@@ -35,9 +36,14 @@ section[description] {
   align-self: center;
   margin: auto;
 }
-section[teaResult] {
-  grid-area: teaResult;
-  text-align: left;
+section[teaCat] {
+  grid-area: teaCat;
+  text-align: center;
+  margin: auto;
+}
+section[expandArea] {
+  grid-area: expandArea;
+  text-align: center;
   margin: auto;
 }
 
@@ -58,21 +64,45 @@ p {
 
 /*Background*/
 body {
-  background: rgb(145, 209, 139);
+  /*background: rgb(145, 209, 139);*/
   background: radial-gradient(
     circle,
     rgba(145, 209, 139, 1) 0%,
     rgba(79, 121, 75, 1) 100%
   );
 }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 15px;
+  background-color: #a3b18a;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+}
+
 /*Mobile header font size*/
 @media screen and (max-width: 750px) {
   header {
     font-size: 30px;
     text-shadow: none;
   }
-  section[description]
-  {
+  section[description] {
     text-shadow: none;
+  }
+}
+/* Mobile */
+@media screen and (max-width: 750px) {
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    background-color: #a3b18a;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    padding: 15px;
   }
 }

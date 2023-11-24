@@ -1,0 +1,54 @@
+<tea-pool category="-1">
+  <style>
+    /*Look of the button*/
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    /*Tea title font*/
+    h3 {
+      color: white;
+      text-shadow: black 1px 1px 2px;
+    }
+    section[teaList] {
+      color: black;
+    }
+  </style>
+  <section teaList>
+    <hr />
+    <button onclick="ToggleTeaNames(this)">
+      <h3>Tea Pool</h3>
+    </button>
+    <div id="teaNames" style="display: none"></div>
+  </section>
+  <script tl-effect>
+    //set up callbacks for event listeners
+    this.loadCategoryByEnum = (categories) => {
+      // big arrow to preserve this
+      populateList(this, categories);
+    };
+
+    //
+    //Event Listeners
+    //
+    //initialize event
+    this.addEventListener("tea-brewed", (event) => {
+      //Could populate via event
+      //event.detail.originalElement.TEA_CATEGORIES.get('ALL');
+      if (event.detail.originalElement.getAttribute("teabrewed") === "true") {
+        this.setAttribute("category", 0);
+      }
+    });
+    this.addEventListener("category-change", (event) => {
+      const category = event.detail.originalElement.getAttribute("category");
+      this.setAttribute("category", category);
+    });
+  </script>
+  <!-- Send event up to get category-->
+  <tl-broadcast
+    tl-dependencies="category"
+    tl-eventname="get-category-by-enum"
+    tl-direction="up"
+  ></tl-broadcast>
+</tea-pool>
