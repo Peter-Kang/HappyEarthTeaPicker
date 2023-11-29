@@ -75,6 +75,8 @@
       //Set the description
       this.shadowRoot.getElementById("TeaText").innerHTML =
         filterBodyHtmlString(random_product.body_html).trim();
+      //Log the results
+      console.info(random_product.id,random_product.title)
     });
   </script>
 </tea-result>
