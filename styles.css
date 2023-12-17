@@ -1,12 +1,5 @@
 /* Font */
-@font-face {
-  font-family: "BrownStone";
-  src: url("HEt.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-}
-h1 {
+header {
   font-family: "Great Vibes";
   color: white;
   text-shadow: black 2px 2px;
