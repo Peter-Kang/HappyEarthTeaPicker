@@ -1,9 +1,16 @@
 /* Font */
+@font-face {
+  font-family: "BrownStone";
+  src: url("CorvusCronan.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
 header {
-  font-family: "Great Vibes", cursive;
+  font-family: "BrownStone", cursive;
   color: white;
   text-shadow: black 2px 2px;
   font-size: 64px;
+  line-height: 1;
 }
 section[description] {
   font-family: "Great Vibes", cursive;
