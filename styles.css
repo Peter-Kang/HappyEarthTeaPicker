@@ -1,12 +1,13 @@
 /* Font */
 @font-face {
   font-family: "BrownStone";
-  src: url("HAPPY_EARTH_TEA.otf") format("opentype");
-  font-weight: 200;
+  src: url("HEt.otf") format("opentype");
+  font-weight: normal;
   font-style: normal;
+  -webkit-font-smoothing: antialiased;
 }
-header {
-  font-family: "BrownStone", cursive;
+h1 {
+  font-family: "Great Vibes";
   color: white;
   text-shadow: black 2px 2px;
   font-size: 64px;
