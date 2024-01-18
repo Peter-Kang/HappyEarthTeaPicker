@@ -1,5 +1,12 @@
 <cat-button>
   <style>
+    /*Look of the cat button*/
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
     /*Center and display the cat*/
     cat-img {
       content: url("./sleep.png");
@@ -10,16 +17,15 @@
       align-self: center;
       margin: auto;
     }
-    /*Look of the cat button*/
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
     /*Button interaction*/
-    button:hover cat-img,
-    button:active cat-img {
+    button:hover cat-img {
       content: url("./happy.png");
+    }
+    /*Mobile*/
+    @media screen and (max-width: 750px) {
+      cat-img {
+        content: url("./happy.png");
+      }
     }
     /*Center the instructions*/
     p {
