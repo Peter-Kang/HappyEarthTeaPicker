@@ -25,8 +25,10 @@
   <script tl-effect>
     //set up callbacks for event listeners
     this.loadCategoryByEnum = (categories) => {
+      // get the current local storage name
+      const currentExcludeProduct = this.getAttribute("category")+"_exclude";
       // big arrow to preserve this
-      populateList(this, categories);
+      populateList(this, categories,currentExcludeProduct);
     };
 
     //
