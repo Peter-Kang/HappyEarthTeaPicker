@@ -43,6 +43,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       checkBox.addEventListener("click",saveLocalStorage);
       checkBox.setAttribute("currentExcludeProduct",currentExcludeProduct);
       checkBox.setAttribute("id",item.id);
+      checkBox.setAttribute("name",item.id);
       if(!excludeList.has(String(item.id)))
       {
         checkBox.setAttribute("checked",true);
