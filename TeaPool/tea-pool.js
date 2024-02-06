@@ -34,10 +34,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
     const excludeList = new Set( fromLocal);
 
     currentPool.forEach((item) => {
-      //title
-      const newPTag = document.createElement("p");
-      newPTag.innerHTML = item.title;
-      newPTag.style="display:inline-block;"
+      
       //check box
       const checkBox = document.createElement("input");
       checkBox.setAttribute("type", "checkbox");
@@ -50,6 +47,11 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       {
         checkBox.setAttribute("checked",true);
       }
+      //title
+      const newPTag = document.createElement("label");
+      newPTag.innerHTML = '&nbsp;'+item.title;
+      newPTag.style="display:inline-block;"
+      newPTag.setAttribute("labelFor",item.id);
       //row
       const row = document.createElement("div");
       row.appendChild(checkBox);
