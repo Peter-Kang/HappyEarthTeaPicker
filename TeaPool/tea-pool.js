@@ -56,6 +56,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       const row = document.createElement("div");
       row.appendChild(checkBox);
       row.appendChild(newPTag);
+      row.className = "TeaPoolRow"
       teaNames.appendChild(row);
     });
   }
