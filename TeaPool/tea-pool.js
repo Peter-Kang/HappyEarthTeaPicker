@@ -12,7 +12,6 @@ function ToggleTeaNames(teaPoolButton) {
 const saveLocalStorage = function ()
 {
   const localStorageSet = new Set(JSON.parse(localStorage.getItem(this.getAttribute("currentExcludeProduct")))) || new Set();
-  console.log(this);
   if(this.checked)
   {
     localStorageSet.delete(this.id);
