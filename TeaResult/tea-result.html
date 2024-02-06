@@ -54,11 +54,22 @@
 
     // listener
     this.addEventListener("pick-tea", (event) => {
+      //pull from local storage
+      const currentExcludeProduct = this.getAttribute("category")+"_exclude";
+      const localStorageSet = new Set(JSON.parse(localStorage.getItem(currentExcludeProduct))) || new Set();
+
+      const product_list = Array.from(this.categoryToUse.values()).filter( 
+        (tea) => 
+        {
+          return !localStorageSet.has(tea.id.toString());
+        } 
+      );
+
       // pick a random tea here
-      const random_index = Math.floor(Math.random() * this.categoryToUse.size);
-      const random_product = Array.from(this.categoryToUse.values())[
-        random_index
-      ];
+      const random_index = Math.floor(Math.random() * product_list.length);
+      console.log(random_index);
+      const random_product = product_list[random_index];
+      console.log(localStorageSet,product_list);
 
       if (!random_product) {
         return;

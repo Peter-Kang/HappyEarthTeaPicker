@@ -9,15 +9,52 @@ function ToggleTeaNames(teaPoolButton) {
   }
 }
 
-function populateList(teaPool, currentPool) {
+const saveLocalStorage = function ()
+{
+  const localStorageSet = new Set(JSON.parse(localStorage.getItem(this.getAttribute("currentExcludeProduct")))) || new Set();
+  if(this.checked)
+  {
+    localStorageSet.delete(this.id);
+  }
+  else
+  {
+    localStorageSet.add(this.id);
+  }
+  console.log(localStorageSet);
+  localStorage.setItem(this.getAttribute("currentExcludeProduct"), JSON.stringify(Array.from(localStorageSet)))
+}
+
+function populateList(teaPool, currentPool, currentExcludeProduct) {
   //console.log("populating list"); this gets called twice?
   if (currentPool) {
     const teaNames = teaPool.shadowRoot.getElementById("teaNames");
     teaNames.innerHTML = "";
+
+    const fromLocal = JSON.parse(localStorage.getItem(currentExcludeProduct)) || [];
+    const excludeList = new Set( fromLocal);
+
     currentPool.forEach((item) => {
+      //title
       const newPTag = document.createElement("p");
       newPTag.innerHTML = item.title;
-      teaNames.appendChild(newPTag);
+      newPTag.style="display:inline-block;"
+      //check box
+      const checkBox = document.createElement("input");
+      checkBox.setAttribute("type", "checkbox");
+      checkBox.style="display:inline-block;";
+        //adding the function to set when the check box is updated
+      checkBox.addEventListener("click",saveLocalStorage);
+      checkBox.setAttribute("currentExcludeProduct",currentExcludeProduct);
+      checkBox.setAttribute("id",item.id);
+      if(!excludeList.has(String(item.id)))
+      {
+        checkBox.setAttribute("checked",true);
+      }
+      //row
+      const row = document.createElement("div");
+      row.appendChild(checkBox);
+      row.appendChild(newPTag);
+      teaNames.appendChild(row);
     });
   }
   // look into this when you have time
