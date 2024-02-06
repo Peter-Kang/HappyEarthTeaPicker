@@ -52,7 +52,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       const newPTag = document.createElement("label");
       newPTag.innerHTML = '&nbsp;'+item.title;
       newPTag.style="display:inline-block;"
-      newPTag.setAttribute("labelFor",item.id);
+      newPTag.setAttribute("for",item.id);
       //row
       const row = document.createElement("div");
       row.appendChild(checkBox);
