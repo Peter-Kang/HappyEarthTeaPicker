@@ -38,7 +38,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       //check box
       const checkBox = document.createElement("input");
       checkBox.setAttribute("type", "checkbox");
-      checkBox.style="display:inline-block;";
+      checkBox.style="display:inline-block; vertical-align: middle;";
         //adding the function to set when the check box is updated
       checkBox.addEventListener("click",saveLocalStorage);
       checkBox.setAttribute("currentExcludeProduct",currentExcludeProduct);
@@ -51,7 +51,6 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       //title
       const newPTag = document.createElement("label");
       newPTag.innerHTML = '&nbsp;'+item.title;
-      newPTag.style="display:inline-block;"
       newPTag.setAttribute("for",item.id);
       //row
       const row = document.createElement("div");
