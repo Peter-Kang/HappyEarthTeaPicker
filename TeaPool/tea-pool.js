@@ -20,7 +20,6 @@ const saveLocalStorage = function ()
   {
     localStorageSet.add(this.id);
   }
-  console.log(localStorageSet);
   localStorage.setItem(this.getAttribute("currentExcludeProduct"), JSON.stringify(Array.from(localStorageSet)))
 }
 
