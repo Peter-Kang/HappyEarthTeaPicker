@@ -1,4 +1,5 @@
 <cat-button>
+  <link rel="stylesheet" href="https://unpkg.com/open-props" />
   <style>
     /*Look of the cat button*/
     button {
@@ -9,7 +10,7 @@
 
     /*Center and display the cat*/
     cat-img {
-      content: url("./sleep.png");
+      content: url("./happy.png");
       width: 50%;
       height: auto;
       display: block;
@@ -17,19 +18,18 @@
       align-self: center;
       margin: auto;
     }
-    /*Button interaction*/
-    button:hover cat-img {
-      content: url("./happy.png");
-    }
-    /*Mobile*/
-    @media screen and (max-width: 750px) {
-      cat-img {
-        content: url("./happy.png");
-      }
-    }
+
     /*Center the instructions*/
     p {
       text-align: center;
+    }
+    /* Different shiny cats */
+    cat-img[cat="xexe"] {
+      content: url("./CatImages/XeXe-y67.png");
+      animation: var(--animation-shake-x);
+    }
+    cat-img[cat="bakal"] {
+      content: url("./CatImages/Bakal-y67.png");
     }
   </style>
   <p>Click on the cat to pick a Tea</p>
@@ -38,12 +38,25 @@
     tl-rebroadcast
     tl-eventmap="click:pick-tea"
     tl-direction="up"
+    onclick="catImageInteraction(this)"
   >
-    <cat-img title="Click to Pick a Tea"></cat-img>
+    <cat-img title="Click to Pick a Tea" cat="" category="-1"></cat-img>
   </button>
   <script tl-effect>
+    // Initialization
     this.addEventListener("tea-brewed", () => {
       this.shadowRoot.querySelector("button").removeAttribute("disabled");
+    });
+    // Category change
+    this.addEventListener("category-change", (event) => {
+      const category = event.detail.originalElement.getAttribute("category");
+      this.shadowRoot
+        .querySelector("cat-img")
+        .setAttribute("category", category);
+    });
+    // Cat Button Click
+    this.addEventListener("pick-tea", (event) => {
+      console.log("Click Pick Tea");
     });
   </script>
 </cat-button>
