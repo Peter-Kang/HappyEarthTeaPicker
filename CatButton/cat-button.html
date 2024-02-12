@@ -36,10 +36,9 @@
     }
     cat-img[cat="bacal"] {
       content: url("./CatImages/Bacal-y67.png");
-      animation: var(--animation-scale-down);
-      animation-duration: 3s;
-      animation-delay: -2s;
-      animation-iteration-count: infinite;
+      animation: var(--animation-shake-y), var(--animation-scale-down);
+      animation-iteration-count: 3;
+      animation-duration: 2s;
     }
   </style>
   <p>Click on the cat to pick a Tea</p>
