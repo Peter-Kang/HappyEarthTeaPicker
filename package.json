@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "start": "npx serve ."
-  },
-  "devDependencies": {
-    "tram-lite": "^2.4.1"
-  }
-}
