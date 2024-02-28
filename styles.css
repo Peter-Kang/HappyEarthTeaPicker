@@ -1,6 +1,12 @@
 /* Font */
+/* Font */
+@font-face {
+  font-family: "BrownStone";
+  src: url("HETFont.ttf") format("truetype");
+}
+
 header {
-  font-family: "Great Vibes";
+  font-family: "BrownStone";
   color: white;
   text-shadow: black 2px 2px;
   font-size: 64px;
@@ -56,7 +62,8 @@ header,
 main {
   margin: auto;
 }
-main, p {
+main,
+p {
   text-align: center;
 }
 
@@ -104,7 +111,7 @@ body {
     padding: 15px;
   }
 
-  .TeaPoolRow{
+  .TeaPoolRow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border-radius: 15px;
