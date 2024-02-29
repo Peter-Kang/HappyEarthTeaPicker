@@ -16,7 +16,7 @@ section[description] {
   font-family: "Great Vibes", cursive;
   color: white;
   text-shadow: black 1px 1px;
-  font-size: 32px;
+  font-size: 16px;
 }
 /* Grid */
 main {
@@ -91,7 +91,7 @@ body {
 /*Mobile header font size*/
 @media screen and (max-width: 750px) {
   header {
-    font-size: 30px;
+    font-size: 24px;
     text-shadow: none;
   }
   section[description] {
