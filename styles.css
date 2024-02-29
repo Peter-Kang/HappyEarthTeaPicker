@@ -9,7 +9,7 @@ header {
   font-family: "BrownStone";
   color: white;
   text-shadow: black 2px 2px;
-  font-size: 64px;
+  font-size: 32px;
   line-height: 1.5;
 }
 section[description] {
