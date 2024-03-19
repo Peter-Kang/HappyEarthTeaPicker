@@ -54,6 +54,10 @@
 
     // listener
     this.addEventListener("pick-tea", (event) => {
+      if(!this.categoryToUse)
+      {
+        return;
+      }
       //pull from local storage
       const currentExcludeProduct = this.getAttribute("category")+"_exclude";
       const localStorageSet = new Set(JSON.parse(localStorage.getItem(currentExcludeProduct))) || new Set();
