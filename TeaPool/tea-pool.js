@@ -25,9 +25,9 @@ const saveLocalStorage = function ()
 
 function populateList(teaPool, currentPool, currentExcludeProduct) {
   //console.log("populating list"); this gets called twice?
+  const teaNames = teaPool.shadowRoot.getElementById("teaNames");
+  teaNames.innerHTML = "";
   if (currentPool) {
-    const teaNames = teaPool.shadowRoot.getElementById("teaNames");
-    teaNames.innerHTML = "";
 
     const fromLocal = JSON.parse(localStorage.getItem(currentExcludeProduct)) || [];
     const excludeList = new Set( fromLocal);
