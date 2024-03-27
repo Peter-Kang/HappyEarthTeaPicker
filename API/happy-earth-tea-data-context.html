@@ -186,7 +186,7 @@
         const result = this.TEA_CATEGORIES.get(this.TEA_ENUMS.get(index));
         event.detail.originalElement.loadCategoryByEnum(result);
       }
-      else if ( index <= 9)
+      else if ( index!= -1 && index <= 9)
       {
         const result = this.TEA_TAGS.get(this.TEA_TAGS_ENUM.get(index));
         event.detail.originalElement.loadCategoryByEnum(result);
