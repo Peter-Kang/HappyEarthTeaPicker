@@ -73,7 +73,10 @@
       const random_index = Math.floor(Math.random() * product_list.length);
       const random_product = product_list[random_index];
 
-      if (!random_product) {
+      if (!random_product || product_list.length == 0) {
+        this.shadowRoot.getElementById("TeaTitle").innerHTML ="Empty Tea Pool to pull from"
+        this.shadowRoot.getElementById("Img").innerHTML =""
+        this.shadowRoot.getElementById("TeaText").innerHTML =""
         return;
       }
       //display random product
