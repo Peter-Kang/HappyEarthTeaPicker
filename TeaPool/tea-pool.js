@@ -1,6 +1,6 @@
 function ToggleTeaNames(teaPoolButton) {
   //couldn't move this into the script tag, is this a shadowDOM issue?
-  const teaNames = teaPoolButton.parentNode.querySelector("#teaNames");
+  const teaNames = teaPoolButton.parentNode.querySelector("#teaPool");
   const isInvisible = teaNames.style.display === "none";
   if (isInvisible) {
     teaNames.style.display = "block";
@@ -23,6 +23,19 @@ const saveLocalStorage = function ()
   localStorage.setItem(this.getAttribute("currentExcludeProduct"), JSON.stringify(Array.from(localStorageSet)))
 }
 
+function ResetButton(teaPool){
+  const checkedBoxes = teaPool.querySelectorAll('input[type="checkbox"]')
+  checkedBoxes.forEach((box) => {
+    console.log(box.getAttribute("id"),box.checked)
+    if(box.checked == false)
+    {
+      box.setAttribute("checked",true)
+      box.dispatchEvent(new Event('change'))
+    }
+  })
+  
+}
+
 function populateList(teaPool, currentPool, currentExcludeProduct) {
   //console.log("populating list"); this gets called twice?
   const teaNames = teaPool.shadowRoot.getElementById("teaNames");
@@ -39,7 +52,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       checkBox.setAttribute("type", "checkbox");
       checkBox.style="display:inline-block; vertical-align: middle;";
         //adding the function to set when the check box is updated
-      checkBox.addEventListener("click",saveLocalStorage);
+      checkBox.addEventListener("change",saveLocalStorage);
       checkBox.setAttribute("currentExcludeProduct",currentExcludeProduct);
       checkBox.setAttribute("id",item.id);
       checkBox.setAttribute("name",item.id);
