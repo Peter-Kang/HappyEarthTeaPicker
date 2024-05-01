@@ -29,7 +29,7 @@ function ResetButton(teaPool){
     console.log(box.getAttribute("id"),box.checked)
     if(box.checked == false)
     {
-      box.setAttribute("checked",true)
+      box.checked = true;
       box.dispatchEvent(new Event('change'))
     }
   })
