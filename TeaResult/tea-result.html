@@ -56,6 +56,9 @@
     this.addEventListener("pick-tea", (event) => {
       if(!this.categoryToUse)
       {
+        this.shadowRoot.getElementById("TeaTitle").innerHTML ="Empty Tea Pool to pull from"
+        this.shadowRoot.getElementById("Img").innerHTML =""
+        this.shadowRoot.getElementById("TeaText").innerHTML =""
         return;
       }
       //pull from local storage
