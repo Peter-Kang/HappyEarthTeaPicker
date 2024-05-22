@@ -6,10 +6,15 @@
     label {
       text-align: center;
     }
+    #SoldOutMessage{
+      color:darkred;
+      font-weight: bold;
+    }
   </style>
 
   <h3 id="TeaTitle"></h3>
   <section teaDescription>
+    <div id="SoldOutMessage"></div>
     <div id="Img"></div>
     <div id="TeaText"></div>
   </section>
@@ -59,6 +64,7 @@
         this.shadowRoot.getElementById("TeaTitle").innerHTML ="Empty Tea Pool to pull from"
         this.shadowRoot.getElementById("Img").innerHTML =""
         this.shadowRoot.getElementById("TeaText").innerHTML =""
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = ""
         return;
       }
       //pull from local storage
@@ -80,17 +86,33 @@
         this.shadowRoot.getElementById("TeaTitle").innerHTML ="Empty Tea Pool to pull from"
         this.shadowRoot.getElementById("Img").innerHTML =""
         this.shadowRoot.getElementById("TeaText").innerHTML =""
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = ""
         return;
       }
       //display random product
+      
+      let available = false; 
+      random_product.variants.forEach(variant => {
+        if( variant.available )
+        {
+          available = true;
+        }
+      });
+      if (available == false){
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = "Sold Out"
+      }
+      else 
+      {
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = ""
+      }
       //title
       this.shadowRoot.getElementById("TeaTitle").innerHTML =
         random_product.title;
       //Set the image
       this.shadowRoot.getElementById("Img").innerHTML =
-        "<img width='200px' src='" +
+        "<a href='https://happyearthtea.com/variants/"+random_product.variants[0].id+"'><img width='200px' src='" +
         JSON.stringify(random_product.images[0].src).replace('"', "") +
-        "/resize=width:200'></img>";
+        "/resize=width:200'></img></a>";
       //Set the description
       this.shadowRoot.getElementById("TeaText").innerHTML =
         filterBodyHtmlString(random_product.body_html).trim();
