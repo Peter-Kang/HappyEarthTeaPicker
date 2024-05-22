@@ -110,7 +110,7 @@
         random_product.title;
       //Set the image
       this.shadowRoot.getElementById("Img").innerHTML =
-        "<a href='https://happyearthtea.com/variants/"+random_product.variants[0].id+"'><img width='200px' src='" +
+        "<a target='_blank' href='https://happyearthtea.com/variants/"+random_product.variants[0].id+"'><img width='200px' src='" +
         JSON.stringify(random_product.images[0].src).replace('"', "") +
         "/resize=width:200'></img></a>";
       //Set the description
