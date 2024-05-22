@@ -98,6 +98,12 @@ body {
     text-shadow: none;
   }
 }
+
+/*Fix h1 space */
+h1 {
+  display: inline-block;
+}
+
 /* Mobile */
 @media screen and (max-width: 750px) {
   .card {
