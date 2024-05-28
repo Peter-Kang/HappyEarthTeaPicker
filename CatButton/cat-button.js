@@ -18,4 +18,6 @@ function catImageInteraction(catbutton) {
     cat_text = ""; //clear if there was anything there before
   }
   catbutton.querySelector("cat-img").setAttribute("cat", cat_text);
+  //Set the current scroll to the button
+  catbutton.querySelector("cat-img").scrollIntoView();
 }
