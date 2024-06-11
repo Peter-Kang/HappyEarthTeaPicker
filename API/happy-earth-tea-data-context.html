@@ -72,7 +72,8 @@
       [8, "YELLOW_TEA"],
     ]);
     this.TEA_TAGS_ENUM = new Map([
-      [9,"On Sale"],
+      [9, "On Sale"],
+      [10, "New"],
     ]);
     this.TEA_CATEGORIES = new Map(); //Key: TEA_ENUM value Value: Map{key:id(int) value:Object(tea data)}
     this.TEA_TAGS = new Map(); //Key: Tag Name, Value: Map{key:id(int) value:Object(tea data)}
@@ -185,9 +186,7 @@
         //return the product ID
         const result = this.TEA_CATEGORIES.get(this.TEA_ENUMS.get(index));
         event.detail.originalElement.loadCategoryByEnum(result);
-      }
-      else if ( index!= -1 && index <= 9)
-      {
+      } else if (index != -1 && index <= 10) {
         const result = this.TEA_TAGS.get(this.TEA_TAGS_ENUM.get(index));
         event.detail.originalElement.loadCategoryByEnum(result);
       }
