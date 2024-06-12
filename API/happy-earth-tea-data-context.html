@@ -73,7 +73,7 @@
     ]);
     this.TEA_TAGS_ENUM = new Map([
       [9, "On Sale"],
-      [10, "New"],
+      [10, "ThisYear"],
     ]);
     this.TEA_CATEGORIES = new Map(); //Key: TEA_ENUM value Value: Map{key:id(int) value:Object(tea data)}
     this.TEA_TAGS = new Map(); //Key: Tag Name, Value: Map{key:id(int) value:Object(tea data)}
@@ -111,6 +111,13 @@
           context.TEA_TAGS.get(tag).set(item.id, item);
         }
       });
+      //New Tag, check if it's this year
+      if (!context.TEA_TAGS.has("ThisYear")) {
+        context.TEA_TAGS.set("ThisYear", new Map());
+      }
+      if (parseInt(item.created_at) == new Date().getFullYear()) {
+        context.TEA_TAGS.get("ThisYear").set(item.id, item);
+      }
     }
 
     function sortProducts(rawResults, context) {
