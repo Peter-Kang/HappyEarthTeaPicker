@@ -115,7 +115,11 @@
       if (!context.TEA_TAGS.has("ThisYear")) {
         context.TEA_TAGS.set("ThisYear", new Map());
       }
-      if (parseInt(item.created_at) == new Date().getFullYear()) {
+      //convert into years and compare
+      if (
+        new Number((new Date() - new Date(item.created_at)) / 31536000000) <=
+        0.5
+      ) {
         context.TEA_TAGS.get("ThisYear").set(item.id, item);
       }
     }
