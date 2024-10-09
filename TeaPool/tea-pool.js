@@ -68,7 +68,7 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       const displayButton = document.createElement("button")
       displayButton.setAttribute("id",item.id);
       displayButton.innerHTML = "Display"
-      displayButton.style="border-radius:5px;background-color:#91d18b;";
+      displayButton.style="border-radius:5px;background-color:#91d18b;float:right;";
       displayButton.onclick = function (event) {
         TramLite.broadcastEvent(event.target, "display-tea", "up");
       };
