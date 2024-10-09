@@ -1,4 +1,4 @@
-<tea-category-picking-context category="-1">
+<tea-category-picking-context category="-1" display-id ="-1">
   <slot></slot>
   <script tl-effect>
     this.addEventListener("category-change", (event) => {
@@ -11,6 +11,11 @@
       //send the event down
       TramLite.broadcastEvent(this, "pick-tea", "down");
     });
+    this.addEventListener("display-tea", (event) => {
+      this.setAttribute("display-id", event.detail.originalElement.id)
+      TramLite.broadcastEvent(this, "display-tea", "down");
+    }
+    )
   </script>
   <tl-broadcast
     tl-dependencies="category"
