@@ -66,10 +66,11 @@ function populateList(teaPool, currentPool, currentExcludeProduct) {
       newPTag.setAttribute("for",item.id);
       //Display Button
       const displayButton = document.createElement("button")
+      displayButton.setAttribute("id",item.id);
       displayButton.innerHTML = "Display"
       displayButton.style="border-radius:5px;background-color:#91d18b;";
-      displayButton.onclick = function () {
-        this.parentElement.removeChild(this);
+      displayButton.onclick = function (event) {
+        TramLite.broadcastEvent(event.target, "display-tea", "up");
       };
 
       //row
