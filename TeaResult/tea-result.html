@@ -91,7 +91,6 @@
         return;
       }
       //display random product
-      
       let available = false; 
       random_product.variants.forEach(variant => {
         if( variant.available )
@@ -121,6 +120,48 @@
       //Log the results
       console.info(random_product.id,random_product.title)
 
+      jumpToCat() //function call in tea-result.js
+    });
+    this.addEventListener("display-tea", (event) => {
+      const product_ID = event.detail.originalElement.getAttribute("display-id");
+      if(product_ID == -1 || !this.categoryToUse)
+      {
+        this.shadowRoot.getElementById("Img").innerHTML =""
+        this.shadowRoot.getElementById("TeaText").innerHTML =""
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = ""
+        return;
+      }
+      const product_list = Array.from(this.categoryToUse.values());
+      const display_product = product_list.find(tea => (tea.id== product_ID))
+      //display random product
+      let available = false; 
+      display_product.variants.forEach(variant => {
+        if( variant.available )
+        {
+          available = true;
+        }
+      });
+      if (available == false){
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = "Sold Out"
+      }
+      else 
+      {
+        this.shadowRoot.getElementById("SoldOutMessage").innerHTML = ""
+      }
+      //title
+      this.shadowRoot.getElementById("TeaTitle").innerHTML =
+      display_product.title;
+      //Set the image
+      this.shadowRoot.getElementById("Img").innerHTML =
+        "<a target='_blank' href='https://happyearthtea.com/variants/"+display_product.variants[0].id+"'><img width='200px' src='" +
+        JSON.stringify(display_product.images[0].src).replace('"', "") +
+        "/resize=width:200'></img></a><p>Click the image to navigate to the main site.</p>";
+      //Set the description
+      this.shadowRoot.getElementById("TeaText").innerHTML =
+        filterBodyHtmlString(display_product.body_html).trim();
+
+      //Log the results
+      console.info(display_product.id,display_product.title)
       jumpToCat() //function call in tea-result.js
     });
   </script>
